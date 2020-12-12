@@ -1,4 +1,4 @@
-package projeto322;
+package projetomc322;
 
 public class Endereco {
     private int cep;

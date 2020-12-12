@@ -1,4 +1,4 @@
-package projeto322;
+package projetomc322;
 
 import java.util.*;
 

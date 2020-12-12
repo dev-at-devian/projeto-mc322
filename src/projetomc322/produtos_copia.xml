@@ -1,0 +1,52 @@
+<produtos>
+	<produto>
+		<tipo>Geladeira</tipo>
+		<codigo>1371035907</codigo>
+		<descricao>
+		  Capacidade do Freezer e Flexível com 95 litros: São 95 litros para você guardar alimentos de diferentes formatos e tamanhos; Controle de Temperatura Externo Blue Touch: Facilidade para controlar a temperatura do refrigerador com o controle digital externo; Dispenser de água: Já a água gelada, não precisa de apresentações, e na geladeira Frost Free Inox TW42S ela nunca falta. Com um dispenser na porta, você só se preocupa em repor a água no recipiente, ela fica sempre geladinha e você sempre hidratado;
+	   </descricao>
+		<fotos>
+			<foto>src/projetomc322/img/geladeira_tw42s_1.jpg</foto>
+			<foto>src/projetomc322/img/geladeira_tw42s_2.jpg</foto>
+			<foto>src/projetomc322/img/geladeira_tw42s_3.jpg</foto>
+			<foto>src/projetomc322/img/geladeira_tw42s_4.jpg</foto>
+		</fotos>
+		<marca>Electrolux</marca>
+		<preco>2599.99</preco>
+		<voltagem>110</voltagem>
+		<altura>79</altura>
+		<largura>60</largura>
+		<comprimento>86</comprimento>
+		<cor>Inox</cor>
+		<modelo>TW42S</modelo>
+		<portas>2</portas>
+		<frostfree>sim</frostfree>
+		<freezer>sim</freezer>
+	</produto>
+	<produto>
+		<tipo>Computador</tipo>
+		<codigo>46289502</codigo>
+		<descricao>
+			Teste suas Habilidades com os Computadores Gamer Smart PC equipados com Nvidia GeForce Gtx Série 10
+		</descricao>
+		<fotos>
+			<foto>src/projetomc322/img/computador_smt81072_1.jpg</foto>
+			<foto>src/projetomc322/img/computador_smt81072_2.jpg</foto>
+			<foto>src/projetomc322/img/computador_smt81072_3.jpg</foto>
+			<foto>src/projetomc322/img/computador_smt81072_4.jpg</foto>
+		</fotos>
+		<marca>Neologic</marca>
+		<preco>4355.10</preco>
+		<voltagem>220</voltagem>
+		<altura>11.1</altura>
+		<largura>22.2</largura>
+		<comprimento>33.3</comprimento>
+		<cor>Preto</cor>
+		<modelo>SMT81072</modelo>
+		<processador>Intel Core i5 3.2 6mb</processador>
+		<sistema>Windows 10</sistema>
+		<ram>8</ram>
+		<hd>1000</hd>
+	</produto>
+</produtos>
+
