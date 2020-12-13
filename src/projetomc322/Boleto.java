@@ -6,11 +6,11 @@ public class Boleto implements MetodoPagamento {
     private String banco;
     private String beneficiario;
     private String pagador;
-    private int valor;
+    private double valor;
     private Calendar dataVencimento;
     private int codigoBarras;
 
-    public Boleto(String banco, String beneficiario, String pagador, int valor, Calendar dataVencimento, int codigoBarras) {
+    public Boleto(String banco, String beneficiario, String pagador, double valor, Calendar dataVencimento, int codigoBarras) {
         this.banco = banco;
         this.beneficiario = beneficiario;
         this.pagador = pagador;
@@ -19,8 +19,12 @@ public class Boleto implements MetodoPagamento {
         this.codigoBarras = codigoBarras;
     }
 
-    public boolean pagar(int valor) {
+    public boolean pagar(double valor) {
         return true;
+    }
+    
+    public double getValor() {
+    	return this.valor;
     }
 
     @Override

@@ -8,9 +8,9 @@ public class Cartao implements MetodoPagamento{
     private Calendar dataExpiracao;
     private int cvv;
     private String nomeTitular;
-    private String cpfTitular;
+    private int cpfTitular;
 
-    public Cartao(String numero, Calendar dataExpiracao, int cvv, String nomeTitular, String cpfTitular) {
+    public Cartao(String numero, Calendar dataExpiracao, int cvv, String nomeTitular, int cpfTitular) {
         this.numero = numero;
         this.dataExpiracao = dataExpiracao;
         this.cvv = cvv;
@@ -18,7 +18,7 @@ public class Cartao implements MetodoPagamento{
         this.cpfTitular = cpfTitular;
     }
 
-    public boolean pagar(int valor) {
+    public boolean pagar(double valor) {
         return true;
     }
 

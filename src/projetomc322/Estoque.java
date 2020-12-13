@@ -379,5 +379,18 @@ public class Estoque {
         }
         
     }
+    
+    public Produto findProduto(int codigo) {
+    	int i = 0;
+    	Produto desejado = null;
+    	for(i = 0; i < produtos.size(); i++) {
+    		Produto p = produtos.get(i);
+    		if(p.getCodigo() == codigo) {
+    			desejado = p;
+    		}
+    	}
+    	//remover do estoque
+    	return desejado;
+    }
 
 }

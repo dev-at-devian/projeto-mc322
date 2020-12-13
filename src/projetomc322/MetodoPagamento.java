@@ -1,5 +1,5 @@
 package projetomc322;
 
 public interface MetodoPagamento {
-    public boolean pagar(int valor);
+    public boolean pagar(double valor);
 }

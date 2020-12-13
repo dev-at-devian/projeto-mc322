@@ -43,9 +43,74 @@ public class Usuario {
         this.compras = compras;
         this.carrinho = carrinho;
     }
+    
+    public String getEmail() {
+		return email;
+	}
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public Calendar getDataNascimento() {
+		return dataNascimento;
+	}
+
+	public int getCpf() {
+		return cpf;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
 
     public ArrayList<MetodoPagamento> getCarteira() {
         return this.carteira;
     }
+    
+    public Cartao adicionarCartão(String numero, Calendar dataExpiracao, int cvv) {
+    	Cartao cartao = new Cartao(numero, dataExpiracao, cvv, this.nome, this.cpf);
+    	carteira.add(cartao);
+    	return cartao;
+    }
+    
+    public void adicionarAoCarrinho(Produto produto) {
+    	carrinho.add(produto);    
+    }
+    
+    public void removerDoCarrinho(Produto produto) {
+    	carrinho.remove(produto);
+    }
+    
+    public ArrayList<Produto> getCarrinho(){
+    	return carrinho;
+    }
+    
+    public double calcularValorCompra() {
+    	double total = 0;
+    	for(Produto produto: carrinho) {
+    		total += produto.getPreco();
+    	}
+    	return total;
+    }
 
+	
+	public ArrayList<Produto> getCompras() {
+		return compras;
+	}
+	
+	public void moverCarrinhoParaCompra(boolean pago) {
+		if(pago) {
+			this.compras = this.carrinho;
+			this.carrinho = null;
+		}
+	}
 }
