@@ -1,3 +1,24 @@
+/*Classe Estoque
+ * Responsável por armazenar detalhes do estoque e gerenciar os produtos, adicionando e removendo.
+ * Atributos
+ * - docBuilder
+ * - arquivoEstoque
+ * - produtos
+ * - arquivoEstoquePath
+ * 
+ * Métodos:
+ * - geters/seters
+ * - removerProduto(produto) e removerProduto(codigo)
+ * - adicionarProduto(produto)
+ * - adicionarEletrodomestico(produto, novoProduto)
+ * - adicionarComputador(produto, novoProduto)
+ * - adicionarFogao(produto, novoProduto)
+ * - adicionarGeladeira(produto, novoProduto)
+ * - adicionarTV(produto, novoProduto)
+ * - carregarEstoque()
+ * - findProduto(codigo)
+ * */
+
 package projetomc322.loja;
 
 import java.io.File;
@@ -36,6 +57,7 @@ public class Estoque {
     private ArrayList<Produto> produtos;
     private String arquivoEstoquePath;
     
+    /*--------------------------construtor--------------------------------*/
     public Estoque() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         dbf.setNamespaceAware(false);
@@ -47,15 +69,50 @@ public class Estoque {
         this.arquivoEstoquePath = "src/projetomc322/produtos/produtos.xml";
         this.produtos = new ArrayList<Produto>();
     }
+    
+    /*--------------------------geters/seters-------------------------------------*/
+    public DocumentBuilder getDocBuilder() {
+		return docBuilder;
+	}
 
-    public ArrayList<Produto> getProdutos() {
+	public void setDocBuilder(DocumentBuilder docBuilder) {
+		this.docBuilder = docBuilder;
+	}
+
+	public Document getArquivoEstoque() {
+		return arquivoEstoque;
+	}
+
+	public void setArquivoEstoque(Document arquivoEstoque) {
+		this.arquivoEstoque = arquivoEstoque;
+	}
+
+	public String getArquivoEstoquePath() {
+		return arquivoEstoquePath;
+	}
+
+	public void setArquivoEstoquePath(String arquivoEstoquePath) {
+		this.arquivoEstoquePath = arquivoEstoquePath;
+	}
+	
+	public ArrayList<Produto> getProdutos() {
         return this.produtos;
     }
 
+	public void setProdutos(ArrayList<Produto> produtos) {
+		this.produtos = produtos;
+	}
+	
+	/*Método removerProduto:
+     * Recebe o produto a ser removido e extrai o código dela para remove-lo do estoque. 
+     */
     public void removerProduto(Produto produto) {
         removerProduto(produto.getCodigo());
     }
-
+    
+    /*Método removerProduto:
+     * Recebe o código do produto a ser removido e remove o produto desejado do arquivo. 
+     */
     public void removerProduto(int codigo) {
         NodeList codigoNodeList = arquivoEstoque.getElementsByTagName("codigo");
         for (int i = 0; i < codigoNodeList.getLength(); i++) {
@@ -66,7 +123,10 @@ public class Estoque {
             }
         }
     }
-
+    
+    /*Método adicionarProduto:
+     * Recebe o produto a ser adicionado e verifica qual o tipo de produto ele é para adicionar estoque. 
+     */
     public void adicionarProduto(Produto produto){
         int codigo = produto.getCodigo();
         String descricao = produto.getDescricao();
@@ -109,7 +169,10 @@ public class Estoque {
         }
 
     }
-
+    
+    /*Método adicionarEletrodomestico:
+     * 
+     */
     private void adicionarEletrodomestico(Produto produto, Element novoProduto) {
         Eletrodomestico eletrodomestico = (Eletrodomestico) produto;
         int voltagem = eletrodomestico.getVoltagem();
@@ -162,6 +225,9 @@ public class Estoque {
 
     }
 
+    /*Método adicionarComputador:
+     * 
+     */
     private void adicionarComputador(Produto produto, Element novoProduto) {
         Computador computador = (Computador) produto;
         String processador = computador.getProcessador();
@@ -194,6 +260,9 @@ public class Estoque {
 
     }
 
+    /*Método adicionarFogao:
+     * 
+     */
     private void adicionarFogao(Produto produto, Element novoProduto) {
         Fogao fogao = (Fogao) produto;
         int numeroBocas = fogao.getNumeroBocas();
@@ -221,6 +290,9 @@ public class Estoque {
 
     }
 
+    /*Método adicionarGeladeira:
+     * 
+     */
     private void adicionarGeladeira(Produto produto, Element novoProduto) {
         Geladeira geladeira = (Geladeira) produto;
         int numeroPortas = geladeira.getNumeroPortas();
@@ -246,7 +318,10 @@ public class Estoque {
         Auxiliares.writeXML(arquivoEstoque, arquivoEstoquePath);
         carregarEstoque();
     }
-
+    
+    /*Método adicionarTV:
+     * 
+     */
     private void adicionarTV(Produto produto, Element novoProduto) {
         TV tv = (TV) produto;
         String telaStr = tv.getTela().getNome();
@@ -270,7 +345,9 @@ public class Estoque {
 
 
 
-
+    /*Método carregarEstoque():
+     * 
+     */
     public void carregarEstoque() {
         try {
             arquivoEstoque = docBuilder.parse(new File(arquivoEstoquePath));
@@ -390,6 +467,9 @@ public class Estoque {
         
     }
     
+    /*Método findProduto:
+     * Recebe o código de um produto e retorna o produto desejado
+     */
     public Produto findProduto(int codigo) {
     	int i = 0;
     	Produto desejado = null;
@@ -399,8 +479,8 @@ public class Estoque {
     			desejado = p;
     		}
     	}
-    	//remover do estoque
     	return desejado;
     }
 
+	
 }

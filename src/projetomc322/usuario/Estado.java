@@ -1,3 +1,13 @@
+/*Enumeração Estado
+ * Responsável por fornecer os estados do Brasil
+ * Atributo:
+ * - sigla
+ * - descrição
+ * 
+ * Método:
+ * - getSigla()
+ * -getDescricao()
+ * */
 package projetomc322.usuario;
 
 public enum Estado {
@@ -32,11 +42,13 @@ public enum Estado {
     private final String sigla;
     private final String descricao;
     
+/*--------------------------construtor--------------------------------*/
     Estado(String sigla, String descricao) {
         this.sigla = sigla;
         this.descricao = descricao;
     }
 
+ /*--------------------------geters-------------------------------------*/
     public String getSigla() {
         return this.sigla;
     }

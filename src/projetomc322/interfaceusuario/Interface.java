@@ -302,6 +302,7 @@ public class Interface {
         printPromptDeComando();
         System.out.print(mensagem + ": ");
     }
+    
     private void printPromptDeComando() {
         if (usuarioAtual == null) {
             System.out.print("(" + status.getNome() + ")" + "> ");

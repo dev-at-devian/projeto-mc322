@@ -1,3 +1,24 @@
+/*Classe Compra
+ * Responsável por armazenar detalhes de uma compra em andamento ou efetuada
+ * 
+ * Atributos:
+ * - status
+ * - sataCompra
+ * - valor
+ * - produtos
+ * - comprador
+ * - metodoPagamento
+ * 
+ * Métodos:
+ * - geters e seters
+ * - efetuarCompra(loja)
+ * - calcularValor()
+ * - finalizarCompra()
+ * - adicionarProduto(produto)
+ * - removerProduto(produto)
+ * - toString()
+ * */
+
 package projetomc322.compra;
 
 import java.util.ArrayList;
@@ -17,6 +38,7 @@ public class Compra {
     private Usuario comprador;
     private MetodoPagamento metodoPagamento;
     
+    /*--------------------------construtor--------------------------------*/
     public Compra(Usuario usuario) {
         this.status = CompraStatus.CARRINHO;
         this.comprador = usuario;
@@ -25,7 +47,83 @@ public class Compra {
         this.metodoPagamento = null;
         this.dataCompra = null;
     }
+    
+    /*--------------------------geters/seters-------------------------------------*/
+    public CompraStatus getStatus() {
+		return status;
+	}
 
+	public void setStatus(CompraStatus status) {
+		this.status = status;
+	}
+
+	public Calendar getDataCompra() {
+		return dataCompra;
+	}
+	
+	public Calendar getData() {
+        return this.dataCompra;
+    }
+
+	public void setDataCompra(Calendar dataCompra) {
+		this.dataCompra = dataCompra;
+	}
+
+	public Usuario getComprador() {
+		return comprador;
+	}
+
+	public void setComprador(Usuario comprador) {
+		this.comprador = comprador;
+	}
+
+	public MetodoPagamento getMetodoPagamento() {
+		return metodoPagamento;
+	}
+
+	public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+		this.metodoPagamento = metodoPagamento;
+	}
+	
+	public double getValor() {
+        return valor;
+    }
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+	
+	public ArrayList<Produto> getProdutos() {
+		return produtos;
+	}
+
+	public void setProdutos(ArrayList<Produto> produtos) {
+		this.produtos = produtos;
+	}
+
+    public Produto getProduto(int index) {
+        return produtos.get(index);
+    }
+    
+    public int getTamanho() {
+        return produtos.size();
+    }
+
+    public MetodoPagamento getMetodoDePagamento() {
+        return metodoPagamento;
+    }
+
+    public void setMetodoDePagamento(MetodoPagamento metodoPagamento) {
+        if (status != CompraStatus.EFETUADA) {
+            this.metodoPagamento = metodoPagamento;
+        }
+    }
+    
+    /*Método efetuarCompra:
+     * Recebe a loja e verifica se há produtos no carrinho, se sim, verifica se há um comprador e um
+     * método de pagamento, se sim, finaliza a compra. Se o carrinho esta vazio a compra é finalizada, 
+     * se não há um comprador ou um método de pagamento a compra não é finalizada.
+     * */
     public boolean efetuarCompra(Loja loja) {
         status = CompraStatus.EM_PROGRESSO;
         if (produtos.isEmpty()) {
@@ -45,7 +143,10 @@ public class Compra {
         status = CompraStatus.CARRINHO;
         return false;
     }
-
+    
+    /*Método calcularValor:
+     * Retorna o valor total dos produtos na array produtos
+     * */
     private void calcularValor() {
         int valorTotal = 0;
         for (int i = 0; i < produtos.size(); i++) {
@@ -54,7 +155,11 @@ public class Compra {
         }
         valor = valorTotal;
     }
-
+    
+    /*Método finalizarCompra:
+     * Seta o status da compra para efetuada, da um novo carrinho para o comprador e popula as compras
+     * feitas pelo usuário
+     * */
     private void finalizarCompra() {
         status = CompraStatus.EFETUADA;
         dataCompra = Calendar.getInstance();
@@ -62,36 +167,10 @@ public class Compra {
         comprador.getCompras().add(this);
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public Calendar getData() {
-        return this.dataCompra;
-    }
-
-    public ArrayList<Produto> getProdutos() {
-        return produtos;
-    }
-
-    public Produto getProduto(int index) {
-        return produtos.get(index);
-    }
     
-    public int getTamanho() {
-        return produtos.size();
-    }
-
-    public MetodoPagamento getMetodoDePagamento() {
-        return metodoPagamento;
-    }
-
-    public void setMetodoDePagamento(MetodoPagamento metodoPagamento) {
-        if (status != CompraStatus.EFETUADA) {
-            this.metodoPagamento = metodoPagamento;
-        }
-    }
-
+    /*Método adicionarProduto:
+     * Caso o status da compra estiver em andamento, permite adicionar o produto desejado ao carrinho
+     * */
     public void adicionarProduto(Produto produto) {
         if (status != CompraStatus.EFETUADA) {
             produtos.add(produto);
@@ -99,6 +178,9 @@ public class Compra {
         }
     }
 
+    /*Método removerProduto:
+     * Caso o status da compra estiver em andamento, permite remover o produto desejado ao carrinho
+     * */
     public void removerProduto(Produto produto) {
         if (status != CompraStatus.EFETUADA) {
             produtos.remove(produto);

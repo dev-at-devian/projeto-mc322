@@ -1,3 +1,31 @@
+/*Classe Loja
+ * Responsável por armazenar informaçoes da loja, gereciar os usuários ativos e o estoque
+ * no estoque.
+ * Atributos:
+ * - nome
+ * - linkAcesso
+ * - cnpj
+ * - telefone
+ * - email
+ * - dataCriacao
+ * - usuarios
+ * - estoque
+ * - caixa
+ * 
+ * Métodos:
+ * - geter/seters
+ * - getProdutoPorCodigo(codigo)
+ * - addProduto(produto)
+ * - addUsuario(usuario)
+ * - removeProduto(produto)
+ * - removeUsuario(usuario)
+ * - fornecerBoleto(usuario)
+ * - receberPagamento(pago, valor)
+ * - obterUsuario(email, senha)
+ * - checarEmail(email)
+ * - checarSenha(usr, senha)
+ * */
+
 package projetomc322.loja;
 import java.util.*;
 
@@ -15,7 +43,8 @@ public class Loja {
     private ArrayList<Usuario> usuarios;
     private Estoque estoque;
     private double caixa;
-     
+    
+    /*--------------------------construtor--------------------------------*/ 
     public Loja(String nome, String linkAcesso, String cnpj, String telefone, String email) {
 			this.nome = nome;
 			this.linkAcesso = linkAcesso;
@@ -41,6 +70,63 @@ public class Loja {
 			this.caixa = 0;
     }
     
+    /*--------------------------geters/seters-------------------------------------*/
+    public String getNome() {
+		return nome;
+	}
+    
+    public void setNome(String nome) {
+		this.nome = nome;
+	}
+    
+    public String getLinkAcesso() {
+		return linkAcesso;
+	}
+    
+    public void setLinkAcesso(String linkAcesso) {
+		this.linkAcesso = linkAcesso;
+	}
+
+	public String getCnpj() {
+		return cnpj;
+	}
+	
+	public void setCnpj(String cnpj) {
+		this.cnpj = cnpj;
+	}
+
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Calendar getDataCriacao() {
+		return dataCriacao;
+	}
+	
+	public void setDataCriacao(Calendar dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+    
 	public Estoque getEstoque(){
 		   return estoque;
 	}
@@ -49,38 +135,17 @@ public class Loja {
 		   this.estoque = estoque;
 	}
 
-	public String getNome() {
-		return nome;
-	}
-
-	public String getLinkAcesso() {
-		return linkAcesso;
-	}
-
-	public String getCnpj() {
-		return cnpj;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public Calendar getDataCriacao() {
-		return dataCriacao;
-	}
-
-	public ArrayList<Usuario> getUsuarios() {
-		return usuarios;
-	}
-	
 	public double getCaixa() {
 		return this.caixa;
 	}
 	
+	public void setCaixa(double caixa) {
+		this.caixa = caixa;
+	}
+	
+	/*Método getProdutoPorCodigo:
+     * Recebe o codigo do produto desejado e caso o produto exista, retorna ele. 
+     */
 	public Produto getProdutoPorCodigo(int codigo) {
 		ArrayList<Produto> prods = estoque.getProdutos();
 		for (int i = 0; i < prods.size(); i++) {
@@ -91,18 +156,32 @@ public class Loja {
 		}
 		return null;
 	}
-
+	
+	/*Método addProduto:
+     * Recebe um produto e adiciona ele ao estoque da loja. 
+     */
 	public void addProduto(Produto p) {
         estoque.adicionarProduto(p);
     }
+	
+	/*Método addUsuario:
+     * Recebe um usuário e o adiciona aos usuarios da loja. 
+     */
     public void addUsuario(Usuario u) {
         usuarios.add(u);
     }
     
+    /*Método removeProduto:
+     * Recebe um produto e remove o produto desejado do estoque da loja. 
+     */
     public boolean removeProduto(Produto p) {
 		    estoque.removerProduto(p);
         return false;
     }
+    
+    /*Método removeUsuario:
+     * Recebe um usuário e remove o usuário desejado dos usuários da loja. 
+     */
     public boolean removeUsuario(Usuario u) {
         if(usuarios.size() >= 1) {
             usuarios.remove(u);
@@ -110,16 +189,25 @@ public class Loja {
         return false;
     }
 	
+    /*Método fornecerBoleto:
+     * Recebe o usuario que necessita de um boleto e fornece um boleto com os dados necessários*/
 	public Boleto fornecerBoleto(Usuario usuario) {
 		return new Boleto("BANK", this.nome, usuario.getNome(), usuario.calcularValorCompra(), Calendar.getInstance(),123456);
 	}
 	
+	/*Método receberPagamento:
+	 * Recebe um booleano indicando se a compra foi paga ou não e o valor da compra para acrescentar ao
+	 * caixa da loja
+	 * */
 	public void receberPagamento(boolean pago, double valor) {
 		if(pago) {
 			this.caixa = this.caixa + valor;
 		}
 	}
-
+	
+	/*Método obterUsuario:
+	 * Recebe email e senha do usuário e retorna o usuário caso ele exista
+	 * */
 	public Usuario obterUsuario(String email, String senha) {
 		Usuario usr = checarEmail(email);
 		if (!(usr == null)) {
@@ -129,7 +217,10 @@ public class Loja {
 		}
 		return null;
 	}
-
+	
+	/*Método checarEmail:
+	 * Recebe email e retorna usuário que tem o email em questão se ele existir
+	 * */
 	private Usuario checarEmail(String email) {
 		for (int i = 0; i < usuarios.size(); i++)  {
 			Usuario usr = usuarios.get(i);
@@ -139,12 +230,15 @@ public class Loja {
 		}
 		return null;
 	}
-
+	
+	/*Método checarSenha:
+	 * Recebe usuário e senha e checa se a senha corresponde a senha cadastrada retornando true 
+	 * se sim e false se não
+	 * */
 	private boolean checarSenha(Usuario usr, String senha) {
 		if (usr.getSenha().equals(senha)) {
 			return true;
 		}
 		return false;
-	}
-    
+	}    
 }

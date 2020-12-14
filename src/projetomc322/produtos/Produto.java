@@ -1,3 +1,15 @@
+/*Classe Produto
+ * Produto descreve informaçoes mais gerais de um produto com os seguintes atributos:
+ * - codigo
+ * - descricao
+ * - fotos
+ * - marca
+ * - preco
+ * 
+ * Métodos:
+ * - geters/seters
+ * - toString()
+ * */
 package projetomc322.produtos;
 
 import java.awt.Image;
@@ -9,7 +21,8 @@ public class Produto {
     private ArrayList<Image> fotos;
     private String marca;
     private double preco;
-    
+
+/*--------------------------------construtor----------------------------------------------------------*/
     public Produto(int codigo, String descricao, ArrayList<Image> fotos, String marca, double preco) {
 		this.codigo = codigo;
 		this.descricao = descricao;
@@ -18,6 +31,7 @@ public class Produto {
 		this.preco = preco;
 	}
 
+/*--------------------------geters/seters------------------------------------------------------------*/
 	public int getCodigo() {
 		return codigo;
 	}
@@ -61,7 +75,9 @@ public class Produto {
 	public void setMarca(String marca) {
 		this.marca = marca;
 	}
-    
+	
+	/*Método toString:
+	* Devole as informações do produto em formato de string*/
 	@Override
     public String toString() {
         String tmpStr = "- Codigo: " + this.codigo + "\n" +

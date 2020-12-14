@@ -1,3 +1,17 @@
+/* Classe Boleto implementa interface Metodo de Pagamento
+ * Boleto representa um tipo de pagamento e deve conter os seguintes atributos:
+ * - banco
+ * - beneficiário
+ * - pagador
+ * - valor
+ * - data de vencimento
+ * - código de barras
+ * 
+ * Métodos:
+ * - pagar(double valor)
+ * - geters
+ * - toString()
+ * */
 package projetomc322.metodosdepagamento;
 
 import java.util.Calendar;
@@ -9,7 +23,8 @@ public class Boleto implements MetodoPagamento {
     private double valor;
     private Calendar dataVencimento;
     private int codigoBarras;
-
+    
+/*--------------------------------construtor----------------------------------------------------------------------*/
     public Boleto(String banco, String beneficiario, String pagador, double valor, Calendar dataVencimento, int codigoBarras) {
         this.banco = banco;
         this.beneficiario = beneficiario;
@@ -18,15 +33,22 @@ public class Boleto implements MetodoPagamento {
         this.dataVencimento = dataVencimento;
         this.codigoBarras = codigoBarras;
     }
-
+    
+/*----------------------------------------geters-----------------------------------------------------------------*/ 
+    public double getValor() {
+    	return this.valor;
+    }
+    
+/*Método pagar:
+ * Recebe como parâmetro o valor do boleto a ser pago e devolve um booleano true para indicar que o boleto
+ * foi pago*/
     public boolean pagar(double valor) {
         return true;
     }
     
-    public double getValor() {
-    	return this.valor;
-    }
-
+/*Método toString:
+ * Devolve todas as informações do boleto em formato de string
+ * */
     @Override
     public String toString() {
         String tmpStr = "Boleto:\n" +
