@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -53,9 +53,9 @@ public class Computador extends Eletrodomestico{
 	@Override
 	public String toString() {
         String tmpStr = super.toString() +
-        				"- Processador: " + this.processador +
-                        "- Sistema Operacional: " + this.sistemaOperacional +
-                        "- RAM: " + this.ram + 
+        				"- Processador: " + this.processador + "\n" +
+                        "- Sistema Operacional: " + this.sistemaOperacional + "\n" +
+                        "- RAM: " + this.ram + "\n" +
                         "- HD: "+ this.hd + "\n";
         return tmpStr;
 	}

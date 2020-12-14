@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 public enum TipoFogao {
 	PISO ("piso"),

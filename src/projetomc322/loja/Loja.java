@@ -1,5 +1,9 @@
-package projetomc322;
+package projetomc322.loja;
 import java.util.*;
+
+import projetomc322.metodosdepagamento.Boleto;
+import projetomc322.produtos.Produto;
+import projetomc322.usuario.Usuario;
 
 public class Loja {
     private String nome;
@@ -21,6 +25,7 @@ public class Loja {
 			this.dataCriacao = Calendar.getInstance();
 			this.usuarios = new ArrayList<Usuario>();
 			this.estoque = new Estoque();
+			this.estoque.carregarEstoque();
 			this.caixa = 0;
     }
     
@@ -76,6 +81,17 @@ public class Loja {
 		return this.caixa;
 	}
 	
+	public Produto getProdutoPorCodigo(int codigo) {
+		ArrayList<Produto> prods = estoque.getProdutos();
+		for (int i = 0; i < prods.size(); i++) {
+			Produto prod = prods.get(i);
+			if (prod.getCodigo() == codigo) {
+				return prod;
+			}
+		}
+		return null;
+	}
+
 	public void addProduto(Produto p) {
         estoque.adicionarProduto(p);
     }
@@ -102,6 +118,33 @@ public class Loja {
 		if(pago) {
 			this.caixa = this.caixa + valor;
 		}
+	}
+
+	public Usuario obterUsuario(String email, String senha) {
+		Usuario usr = checarEmail(email);
+		if (!(usr == null)) {
+			if (checarSenha(usr, senha)) {
+				return usr;
+			}
+		}
+		return null;
+	}
+
+	private Usuario checarEmail(String email) {
+		for (int i = 0; i < usuarios.size(); i++)  {
+			Usuario usr = usuarios.get(i);
+			if (usr.getEmail().equals(email)) {
+				return usr;
+			}
+		}
+		return null;
+	}
+
+	private boolean checarSenha(Usuario usr, String senha) {
+		if (usr.getSenha().equals(senha)) {
+			return true;
+		}
+		return false;
 	}
     
 }

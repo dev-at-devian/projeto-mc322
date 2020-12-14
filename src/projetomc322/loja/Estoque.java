@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.loja;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +20,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import projetomc322.auxiliares.Auxiliares;
+import projetomc322.produtos.Computador;
+import projetomc322.produtos.Eletrodomestico;
+import projetomc322.produtos.Fogao;
+import projetomc322.produtos.Geladeira;
+import projetomc322.produtos.Produto;
+import projetomc322.produtos.TV;
+import projetomc322.produtos.Tela;
+import projetomc322.produtos.TipoFogao;
+
 public class Estoque {
     private DocumentBuilder docBuilder;
     private Document arquivoEstoque;
@@ -34,7 +44,7 @@ public class Estoque {
         } catch(Exception e){
             e.printStackTrace();
         }
-        this.arquivoEstoquePath = "src/projetomc322/produtos.xml";
+        this.arquivoEstoquePath = "src/projetomc322/produtos/produtos.xml";
         this.produtos = new ArrayList<Produto>();
     }
 

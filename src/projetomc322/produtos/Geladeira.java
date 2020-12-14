@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -42,8 +42,8 @@ public class Geladeira extends Eletrodomestico{
 	@Override
     public String toString() {
         String tmpStr = super.toString() +
-        				"- Portas: " + this.numeroPortas +
-                        "- Frost Free: " + (this.frostFree ? "sim" : "não") +
+        				"- Portas: " + this.numeroPortas + "\n" +
+                        "- Frost Free: " + (this.frostFree ? "sim" : "não") + "\n" +
                         "- Freezer: " + (this.freezer ? "sim" : "não") + "\n";
         return tmpStr;
     }

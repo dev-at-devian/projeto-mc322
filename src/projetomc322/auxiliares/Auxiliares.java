@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.auxiliares;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +20,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import projetomc322.produtos.Eletrodomestico;
+import projetomc322.produtos.Produto;
 
 public class Auxiliares {
     public static String getTagNodeValue(Element element, String tag) {
@@ -63,5 +66,18 @@ public class Auxiliares {
 				}
 
 		}
+
+
+    public static String getResumoProduto(Produto produto) {
+				String tmpStr = "";
+        tmpStr += (produto.getCodigo() + " - " + produto.getMarca());
+        if (produto instanceof Eletrodomestico) {
+            Eletrodomestico eletrodomestico = (Eletrodomestico) produto;
+            tmpStr += (" " + eletrodomestico.getModelo());
+        }
+        tmpStr += (" (R$ " + produto.getPreco() + ")");
+				return tmpStr;
+    }
+
 
 }

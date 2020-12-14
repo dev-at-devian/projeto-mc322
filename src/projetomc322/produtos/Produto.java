@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.*;
@@ -64,10 +64,10 @@ public class Produto {
     
 	@Override
     public String toString() {
-        String tmpStr = "- Codigo: " + this.codigo +
-                        "- Descrição: " + this.descricao +
-                        "- Fotos: " + this.fotos +
-                        "- Marca: " + this.marca +
+        String tmpStr = "- Codigo: " + this.codigo + "\n" +
+                        "- Descrição: " + this.descricao + "\n" +
+                        "- Fotos: " + this.fotos + "\n" +
+                        "- Marca: " + this.marca + "\n" +
                         "- Preço: " + this.preco + "\n";
         return tmpStr;
     }

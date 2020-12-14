@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -42,8 +42,8 @@ public class Fogao extends Eletrodomestico{
 	@Override
 	public String toString() {
         String tmpStr = super.toString() +
-        				"- Bocas: " + this.numeroBocas +
-                        "- Tipo: " + this.tipo +
+        				"- Bocas: " + this.numeroBocas + "\n" +
+                        "- Tipo: " + this.tipo + "\n" +
                         "- Forno: " + (this.forno ? "sim" : "não") + "\n";
         return tmpStr;
 	}

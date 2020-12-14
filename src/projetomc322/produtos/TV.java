@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ public class TV extends Eletrodomestico{
 	@Override
 	public String toString() {
         String tmpStr = super.toString() +
-        				"- Tela: " + this.tela +
+        				"- Tela: " + this.tela + "\n" +
                         "- Smart: " + (this.smart ? "sim" : "não") + "\n";
         return tmpStr;
 	}

@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.metodosdepagamento;
 
 import java.util.Calendar;
 
@@ -30,11 +30,11 @@ public class Boleto implements MetodoPagamento {
     @Override
     public String toString() {
         String tmpStr = "Boleto:\n" +
-                        "- Banco: " + this.banco +
-                        "- Beneficiario: " + this.beneficiario +
-                        "- Pagador: " + this.pagador +
-                        "- Valor: " + this.valor +
-                        "- Data de Vencimento: " + this.dataVencimento +
+                        "- Banco: " + this.banco + "\n" +
+                        "- Beneficiario: " + this.beneficiario + "\n" +
+                        "- Pagador: " + this.pagador + "\n" +
+                        "- Valor: " + this.valor + "\n" +
+                        "- Data de Vencimento: " + this.dataVencimento + "\n" +
                         "- Código de Barras: " + this.codigoBarras + "\n";
         return tmpStr;
     }

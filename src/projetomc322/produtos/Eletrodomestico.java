@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.produtos;
 
 import java.awt.Image;
 import java.util.ArrayList;
@@ -78,12 +78,12 @@ public class Eletrodomestico extends Produto{
 	@Override
     public String toString() {
         String tmpStr = super.toString() +
-        				"- Marca: " + this.modelo +
-                        "- Cor: " + this.cor +
-                        "- Voltagem: " + this.voltagem +
-                        "- Altura: " + this.altura +
-                        "- Largura: " + this.largura +
-                        "- Comprimento: " + this.comprimento + 
+        				"- Marca: " + this.modelo + "\n" +
+                        "- Cor: " + this.cor + "\n" +
+                        "- Voltagem: " + this.voltagem + "\n" +
+                        "- Altura: " + this.altura + "\n" +
+                        "- Largura: " + this.largura + "\n" +
+                        "- Comprimento: " + this.comprimento + "\n" +
                         "- Volume: " + this.calcularVolume() + "\n";
         return tmpStr;
     }

@@ -1,4 +1,4 @@
-package projetomc322;
+package projetomc322.usuario;
 
 public enum Estado {
     ACRE ("AC", "Acre"),
