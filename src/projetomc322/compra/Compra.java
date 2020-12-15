@@ -3,7 +3,7 @@
  * 
  * Atributos:
  * - status
- * - sataCompra
+ * - dataCompra
  * - valor
  * - produtos
  * - comprador
@@ -37,7 +37,7 @@ public class Compra {
     private ArrayList<Produto> produtos;
     private Usuario comprador;
     private MetodoPagamento metodoPagamento;
-    
+
     /*--------------------------construtor--------------------------------*/
     public Compra(Usuario usuario) {
         this.status = CompraStatus.CARRINHO;
@@ -47,64 +47,64 @@ public class Compra {
         this.metodoPagamento = null;
         this.dataCompra = null;
     }
-    
+
     /*--------------------------geters/seters-------------------------------------*/
     public CompraStatus getStatus() {
-		return status;
-	}
+        return status;
+    }
 
-	public void setStatus(CompraStatus status) {
-		this.status = status;
-	}
+    public void setStatus(CompraStatus status) {
+        this.status = status;
+    }
 
-	public Calendar getDataCompra() {
-		return dataCompra;
-	}
-	
-	public Calendar getData() {
+    public Calendar getDataCompra() {
+        return dataCompra;
+    }
+
+    public Calendar getData() {
         return this.dataCompra;
     }
 
-	public void setDataCompra(Calendar dataCompra) {
-		this.dataCompra = dataCompra;
-	}
+    public void setDataCompra(Calendar dataCompra) {
+        this.dataCompra = dataCompra;
+    }
 
-	public Usuario getComprador() {
-		return comprador;
-	}
+    public Usuario getComprador() {
+        return comprador;
+    }
 
-	public void setComprador(Usuario comprador) {
-		this.comprador = comprador;
-	}
+    public void setComprador(Usuario comprador) {
+        this.comprador = comprador;
+    }
 
-	public MetodoPagamento getMetodoPagamento() {
-		return metodoPagamento;
-	}
+    public MetodoPagamento getMetodoPagamento() {
+        return metodoPagamento;
+    }
 
-	public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
-		this.metodoPagamento = metodoPagamento;
-	}
-	
-	public double getValor() {
+    public void setMetodoPagamento(MetodoPagamento metodoPagamento) {
+        this.metodoPagamento = metodoPagamento;
+    }
+
+    public double getValor() {
         return valor;
     }
 
-	public void setValor(double valor) {
-		this.valor = valor;
-	}
-	
-	public ArrayList<Produto> getProdutos() {
-		return produtos;
-	}
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
 
-	public void setProdutos(ArrayList<Produto> produtos) {
-		this.produtos = produtos;
-	}
+    public ArrayList<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
+    }
 
     public Produto getProduto(int index) {
         return produtos.get(index);
     }
-    
+
     public int getTamanho() {
         return produtos.size();
     }
@@ -118,7 +118,7 @@ public class Compra {
             this.metodoPagamento = metodoPagamento;
         }
     }
-    
+
     /*Método efetuarCompra:
      * Recebe a loja e verifica se há produtos no carrinho, se sim, verifica se há um comprador e um
      * método de pagamento, se sim, finaliza a compra. Se o carrinho esta vazio a compra é finalizada, 
@@ -143,7 +143,7 @@ public class Compra {
         status = CompraStatus.CARRINHO;
         return false;
     }
-    
+
     /*Método calcularValor:
      * Retorna o valor total dos produtos na array produtos
      * */
@@ -155,7 +155,7 @@ public class Compra {
         }
         valor = valorTotal;
     }
-    
+
     /*Método finalizarCompra:
      * Seta o status da compra para efetuada, da um novo carrinho para o comprador e popula as compras
      * feitas pelo usuário
@@ -167,7 +167,7 @@ public class Compra {
         comprador.getCompras().add(this);
     }
 
-    
+
     /*Método adicionarProduto:
      * Caso o status da compra estiver em andamento, permite adicionar o produto desejado ao carrinho
      * */
@@ -200,8 +200,8 @@ public class Compra {
                 break;
             case EFETUADA:
                 String dataCompraStr = dataCompra.get(Calendar.DAY_OF_MONTH) + "/" + 
-                                       (dataCompra.get(Calendar.MONTH)+1) + "/" + 
-                                       dataCompra.get(Calendar.YEAR);
+                    (dataCompra.get(Calendar.MONTH)+1) + "/" + 
+                    dataCompra.get(Calendar.YEAR);
                 tmpStr += "Compra " + status.getDescricao() + " em " + dataCompraStr;
                 break;
             default:

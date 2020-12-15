@@ -56,7 +56,7 @@ public class Estoque {
     private Document arquivoEstoque;
     private ArrayList<Produto> produtos;
     private String arquivoEstoquePath;
-    
+
     /*--------------------------construtor--------------------------------*/
     public Estoque() {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -69,47 +69,47 @@ public class Estoque {
         this.arquivoEstoquePath = "src/projetomc322/produtos/produtos.xml";
         this.produtos = new ArrayList<Produto>();
     }
-    
-    /*--------------------------geters/seters-------------------------------------*/
+
+    /*--------------------------getters/setters-------------------------------------*/
     public DocumentBuilder getDocBuilder() {
-		return docBuilder;
-	}
+        return docBuilder;
+    }
 
-	public void setDocBuilder(DocumentBuilder docBuilder) {
-		this.docBuilder = docBuilder;
-	}
+    public void setDocBuilder(DocumentBuilder docBuilder) {
+        this.docBuilder = docBuilder;
+    }
 
-	public Document getArquivoEstoque() {
-		return arquivoEstoque;
-	}
+    public Document getArquivoEstoque() {
+        return arquivoEstoque;
+    }
 
-	public void setArquivoEstoque(Document arquivoEstoque) {
-		this.arquivoEstoque = arquivoEstoque;
-	}
+    public void setArquivoEstoque(Document arquivoEstoque) {
+        this.arquivoEstoque = arquivoEstoque;
+    }
 
-	public String getArquivoEstoquePath() {
-		return arquivoEstoquePath;
-	}
+    public String getArquivoEstoquePath() {
+        return arquivoEstoquePath;
+    }
 
-	public void setArquivoEstoquePath(String arquivoEstoquePath) {
-		this.arquivoEstoquePath = arquivoEstoquePath;
-	}
-	
-	public ArrayList<Produto> getProdutos() {
+    public void setArquivoEstoquePath(String arquivoEstoquePath) {
+        this.arquivoEstoquePath = arquivoEstoquePath;
+    }
+
+    public ArrayList<Produto> getProdutos() {
         return this.produtos;
     }
 
-	public void setProdutos(ArrayList<Produto> produtos) {
-		this.produtos = produtos;
-	}
-	
-	/*Método removerProduto:
+    public void setProdutos(ArrayList<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+    /*Método removerProduto:
      * Recebe o produto a ser removido e extrai o código dela para remove-lo do estoque. 
      */
     public void removerProduto(Produto produto) {
         removerProduto(produto.getCodigo());
     }
-    
+
     /*Método removerProduto:
      * Recebe o código do produto a ser removido e remove o produto desejado do arquivo. 
      */
@@ -123,9 +123,11 @@ public class Estoque {
             }
         }
     }
-    
+
     /*Método adicionarProduto:
      * Recebe o produto a ser adicionado e verifica qual o tipo de produto ele é para adicionar estoque. 
+     * Dependendo do tipo específico de produto, realiza operações adicionais por meio de métodos privados
+     * especializados no tipo (por exemplo, adicionarGeladeira para produtos do tipo Geladeira)
      */
     public void adicionarProduto(Produto produto){
         int codigo = produto.getCodigo();
@@ -169,9 +171,9 @@ public class Estoque {
         }
 
     }
-    
+
     /*Método adicionarEletrodomestico:
-     * 
+     * Extensão de adicionarProduto para produtos do tipo Eletrodomestico
      */
     private void adicionarEletrodomestico(Produto produto, Element novoProduto) {
         Eletrodomestico eletrodomestico = (Eletrodomestico) produto;
@@ -226,7 +228,7 @@ public class Estoque {
     }
 
     /*Método adicionarComputador:
-     * 
+     * Extensão de adicionarProduto para produtos do tipo Computador
      */
     private void adicionarComputador(Produto produto, Element novoProduto) {
         Computador computador = (Computador) produto;
@@ -261,7 +263,7 @@ public class Estoque {
     }
 
     /*Método adicionarFogao:
-     * 
+     * Extensão de adicionarProduto para produtos do tipo Fogao
      */
     private void adicionarFogao(Produto produto, Element novoProduto) {
         Fogao fogao = (Fogao) produto;
@@ -291,7 +293,7 @@ public class Estoque {
     }
 
     /*Método adicionarGeladeira:
-     * 
+     * Extensão de adicionarProduto para produtos do tipo Geladeira
      */
     private void adicionarGeladeira(Produto produto, Element novoProduto) {
         Geladeira geladeira = (Geladeira) produto;
@@ -318,9 +320,9 @@ public class Estoque {
         Auxiliares.writeXML(arquivoEstoque, arquivoEstoquePath);
         carregarEstoque();
     }
-    
+
     /*Método adicionarTV:
-     * 
+     * Extensão de adicionarProduto para produtos do tipo TV
      */
     private void adicionarTV(Produto produto, Element novoProduto) {
         TV tv = (TV) produto;
@@ -346,7 +348,8 @@ public class Estoque {
 
 
     /*Método carregarEstoque():
-     * 
+     * Carrega um arquivo XML contendo os produtos do estoque, gera objetos para 
+     * cada um, e os adiciona à ArrayList de produtos.
      */
     public void carregarEstoque() {
         try {
@@ -374,7 +377,7 @@ public class Estoque {
             ArrayList<Image> fotos = new ArrayList<Image>();
 
             NodeList fotosNodeList = ((Element) produto.getElementsByTagName("fotos").item(0))
-                                            .getElementsByTagName("foto");
+                .getElementsByTagName("foto");
 
             for (int j = 0; j < fotosNodeList.getLength(); j++) {
                 Element fotoElement = (Element) fotosNodeList.item(j);
@@ -396,7 +399,7 @@ public class Estoque {
             String modelo = Auxiliares.getTagNodeValue(produto, "modelo");
 
             // Determinação de tipo
-            
+
             String tipo = Auxiliares.getTagNodeValue(produto, "tipo");
 
             switch (tipo) {
@@ -464,23 +467,23 @@ public class Estoque {
                     break;
             }
         }
-        
+
     }
-    
+
     /*Método findProduto:
      * Recebe o código de um produto e retorna o produto desejado
      */
     public Produto findProduto(int codigo) {
-    	int i = 0;
-    	Produto desejado = null;
-    	for(i = 0; i < produtos.size(); i++) {
-    		Produto p = produtos.get(i);
-    		if(p.getCodigo() == codigo) {
-    			desejado = p;
-    		}
-    	}
-    	return desejado;
+        int i = 0;
+        Produto desejado = null;
+        for(i = 0; i < produtos.size(); i++) {
+            Produto p = produtos.get(i);
+            if(p.getCodigo() == codigo) {
+                desejado = p;
+            }
+        }
+        return desejado;
     }
 
-	
+
 }

@@ -18,7 +18,7 @@ public enum CompraStatus {
         this.descricao = descricao;
     }
 
-    /*--------------------------geter-------------------------------------*/
+    /*--------------------------getter-------------------------------------*/
     public String getDescricao(){
         return this.descricao;
     }

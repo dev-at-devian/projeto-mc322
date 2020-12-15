@@ -21,7 +21,7 @@ public class Cartao implements MetodoPagamento{
     private int cvv;
     private String nomeTitular;
     private int cpfTitular;
-/*--------------------------------construtor--------------------------------------------------------------*/
+    /*--------------------------------construtor--------------------------------------------------------------*/
     public Cartao(String numero, Calendar dataExpiracao, int cvv, String nomeTitular, int cpfTitular) {
         this.numero = numero;
         this.dataExpiracao = dataExpiracao;
@@ -30,7 +30,7 @@ public class Cartao implements MetodoPagamento{
         this.cpfTitular = cpfTitular;
     }
 
-/*------------------------------------------geters---------------------------------------------------------*/
+    /*------------------------------------------getters---------------------------------------------------------*/
     public String getNumero() {
         return numero;
     }
@@ -50,31 +50,31 @@ public class Cartao implements MetodoPagamento{
     public int getCpfTitular() {
         return cpfTitular;
     }
-    
-/*Método getNumerosFinais:
- * Devolve os últimos números do cartão para identificação*/
+
+    /*Método getNumerosFinais:
+     * Devolve os últimos números do cartão para identificação*/
     public String getNumerosFinais() {
         String[] tmpStrArr = numero.split(" ");
         return tmpStrArr[tmpStrArr.length - 1];
     }
-        
-/*Método pagar:
-* Recebe como parâmetro o valor da compra a ser paga e devolve um booleano true para indicar o sucesso do pagamento*/
+
+    /*Método pagar:
+     * Recebe como parâmetro o valor da compra a ser paga e devolve um booleano true para indicar o sucesso do pagamento*/
     public boolean pagar(double valor) {
         return true;
     }
-    
-/*Método toString:
-* Devolve todas as informações do cartão em formato de string
-* */
+
+    /*Método toString:
+     * Devolve todas as informações do cartão em formato de string
+     * */
     @Override
     public String toString() {
         String tmpStr = "Cartão:\n" +
-                        "- Número: " + this.numero + "\n" +
-                        "- Nome do Titular: " + this.nomeTitular + "\n" +
-                        "- CPF do Titular: " + this.cpfTitular + "\n" +
-                        "- CVV: " + this.cvv + "\n" +
-                        "- Data de Expiração: " + this.dataExpiracao + "\n";
+            "- Número: " + this.numero + "\n" +
+            "- Nome do Titular: " + this.nomeTitular + "\n" +
+            "- CPF do Titular: " + this.cpfTitular + "\n" +
+            "- CVV: " + this.cvv + "\n" +
+            "- Data de Expiração: " + this.dataExpiracao + "\n";
         return tmpStr;
     }
 
