@@ -30,7 +30,7 @@ import projetomc322.metodosdepagamento.Cartao;
 import projetomc322.metodosdepagamento.MetodoPagamento;
 import projetomc322.produtos.Produto;
 
-public class Usuario {
+public abstract class Usuario {
     private String email;
     private String senha;
     private String nome;
@@ -197,5 +197,5 @@ public class Usuario {
      */
 	public String getPrimeiroNome() {
 	    return nome.split(" ")[0];
-	  }
+	}
 }

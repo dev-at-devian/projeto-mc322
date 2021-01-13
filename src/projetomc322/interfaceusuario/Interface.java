@@ -1,35 +1,11 @@
-/* Classe Interface
- * 
- * Implementa a interface que permite que os usuários interajam com 
- * a loja. Interface baseada em texto.
- *
- * Atributos:
- * - status
- * - usuarioAtual
- * - lojaAtual
- * - scan (Scanner de uso interno para entrada de dados pelo teclado)
- *
- * Métodos:
- * - iniciar()
- * - trocarPara(InterfaceStatus status)
- * - creditos()
- * - login()
- * - principal()
- * - compra()
- * - pagamento()
- * - printListaDeComandos(InterfaceStatus status)
- * - printListaDeProdutos()
- * - printListaDeProdutos(String nome)
- * - printPromptDeComando()
- * - printPromptComMensagem(String mensagem)
- *
- */
 package projetomc322.interfaceusuario;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
+import InterfaceGrafica.Cadastro;
+import InterfaceGrafica.Login;
 import projetomc322.auxiliares.Auxiliares;
 import projetomc322.compra.Compra;
 import projetomc322.loja.Loja;
@@ -39,7 +15,6 @@ import projetomc322.metodosdepagamento.MetodoPagamento;
 import projetomc322.produtos.Eletrodomestico;
 import projetomc322.produtos.Produto;
 import projetomc322.usuario.Usuario;
-
 import java.util.ArrayList;
 
 public class Interface {
@@ -48,7 +23,7 @@ public class Interface {
     private Scanner scan;
     private Loja lojaAtual;
 
-    /*--------------------------construtor--------------------------------*/
+
     public Interface(Loja loja) {
         lojaAtual = loja;
         usuarioAtual = null;
@@ -56,29 +31,31 @@ public class Interface {
         scan = new Scanner(System.in);
     }
 
-
-    /* Método iniciar:
-     *
-     * Inicia (e termina) a interface, iniciando a função de login e fechando o
-     * Scanner quando todas as funções forem terminadas
-     *
-     */
-
+    public Loja getLojaAtual() {
+    	return lojaAtual;
+    }
+    
+    public InterfaceStatus getStatus() {
+    	return status;
+    }
+    
+    public Usuario getUsuarioAtual() {
+    	return usuarioAtual;
+    }
+    
+    public void setUsuarioAtual(Usuario user) {
+    	usuarioAtual = user;
+    }
+    
     public void iniciar() {
         status = InterfaceStatus.INICIO;
-        trocarPara(InterfaceStatus.LOGIN);
+        trocarPara(InterfaceStatus.CADASTRO);
         status = InterfaceStatus.TERMINADA;
         scan.close();
     }
 
-    /* Método trocarPara
-     *
-     * Salva o último status e chama a função correspondente ao status passado
-     * como argumento. Quando essa for terminada, retorna o status para o último salvo.
-     *
-     */
 
-    private void trocarPara(InterfaceStatus st) {
+    public void trocarPara(InterfaceStatus st) {
         InterfaceStatus ultimoStatus = status;
         status = st;
         switch (st) {
@@ -90,6 +67,10 @@ public class Interface {
                 creditos();
                 status = ultimoStatus;
                 break;
+            case CADASTRO:
+            	cadastro();
+            	status = ultimoStatus;
+            	break;
             case LOGIN:
                 login();
                 status = ultimoStatus;
@@ -112,51 +93,15 @@ public class Interface {
         }
     }
 
-    /* Método creditos
-     *
-     * Imprime a "logo" da loja e o seu nome
-     *
-     */
-
     private void creditos() {
         System.out.println("███╗░░░███╗░█████╗░██████╗░██████╗░██████╗░\n████╗░████║██╔══██╗╚════██╗╚════██╗╚════██╗\n██╔████╔██║██║░░╚═╝░█████╔╝░░███╔═╝░░███╔═╝\n██║╚██╔╝██║██║░░██╗░╚═══██╗██╔══╝░░██╔══╝░░\n██║░╚═╝░██║╚█████╔╝██████╔╝███████╗███████╗\n╚═╝░░░░░╚═╝░╚════╝░╚═════╝░╚══════╝╚══════╝");
         System.out.println("LOJAS MC322");
     }
 
-    /* Método login
-     *
-     * Repetidamente recebe strings de email e senha do usuário e
-     * checa a existência de uma conta com essas credenciais na loja,
-     * até receber um objeto Usuario válido para salvar em usuarioAtual 
-     * e trocar para a função principal.
-     *
-     */
-
     private void login() {
-        while (true) {
-            printPromptComMensagem("E-mail");
-            String email = scan.nextLine();
-            if (email.equals("sair")) {
-                return;
-            }
-            printPromptComMensagem("Senha");
-            String senha = scan.nextLine();
-            Usuario usr = lojaAtual.obterUsuario(email, senha);
-            if (!(usr == null)) {
-                usuarioAtual = usr;
-                trocarPara(InterfaceStatus.CREDITOS);
-                printListaDeComandos(InterfaceStatus.PRINCIPAL);
-                trocarPara(InterfaceStatus.PRINCIPAL);
-            }
-        }
+    	Login login = new Login(this);
+    	login.setVisible(true);
     }
-
-    /* Método principal
-     *
-     * Repetidamente recebe strings representando comandos do usuário
-     * e executa comandos válidos (comandos explicados em printListaDeComandos).
-     * 
-     */
 
     private void principal() {
         int codigo = 0;
@@ -208,13 +153,6 @@ public class Interface {
             }
         }
     }
-
-    /* Método compra
-     *
-     * Mesmo funcionamento da função principal, mas executa
-     * comandos específicos do processo de compra.
-     *
-     */
 
     private void compra() {
         int indice;
@@ -285,14 +223,6 @@ public class Interface {
         }
     }
 
-    /* Método pagamento
-     *
-     * Recebe do usuário, em forma de questionário, informações para 
-     * a construção de um novo objeto de método de pagamento e o salva
-     * na carteira do usuário atual.
-     *
-     */
-
     private void pagamento() {
         while (true) {
             System.out.println("Metodos de pagamento disponiveis:");
@@ -331,13 +261,12 @@ public class Interface {
         }
     }
 
-    /* Método printListaDeComandos
-     *
-     * Imprime a lista de comandos válidos do status passado como argumento
-     *
-     */
-
-    private void printListaDeComandos(InterfaceStatus stat) {
+    private void cadastro() {
+    	Cadastro captura = new Cadastro(this);
+		captura.janela();
+    }
+    
+    public void printListaDeComandos(InterfaceStatus stat) {
         System.out.println("Comandos:");
         System.out.println(" - ajuda : Apresenta a lista de comandos");
         System.out.println(" - cancelar (em qualquer contexto) : Retorna ao menu principal");
@@ -360,14 +289,6 @@ public class Interface {
         }
     }
 
-    /* Método printListaDeProdutos
-     *
-     * Sem argumento, imprime a lista de todos os produtos em estoque na loja.
-     * Recebendo uma string, imprime todos os produtos em estoque cuja marca,
-     * modelo ou descrição contenham a string em alguma parte (case insensitive).
-     *
-     */
-
     private void printListaDeProdutos() {
         ArrayList<Produto> estoque = lojaAtual.getEstoque().getProdutos();
         for (int i = 0; i < estoque.size(); i++) {
@@ -388,19 +309,12 @@ public class Interface {
         }
     }
 
+
+    private void printPromptComMensagem(String mensagem) {
+        printPromptDeComando();
+        System.out.print(mensagem + ": ");
+    }
     
-    /* Método printPromptDeComando
-     *
-     * Imprime uma linha no formato:
-     * "(STATUS)> ", se usuarioAtual ainda não estiver definido
-     * "(PrimeiroNome - STATUS)> ", se usuarioAtual estiver definido e o status não for PRINCIPAL
-     * "(PrimeiroNome)> ", se usuarioAtual estiver definido e o status for PRINCIPAL
-     * Onde:
-     * STATUS é o nome do status atual, em uppercase
-     * PrimeiroNome é o primeiro nome do usuario atual.
-     *
-     */
-   
     private void printPromptDeComando() {
         if (usuarioAtual == null) {
             System.out.print("(" + status.getNome() + ")" + "> ");
@@ -413,18 +327,4 @@ public class Interface {
         }
     }
 
-    /* Método printPromptComMensagem
-     *
-     * Imprime o prompt no seguinte formato:
-     * "prompt mensagem: "
-     * Onde:
-     * mensagem é a string passada como argumento
-     *
-     */
-
-    private void printPromptComMensagem(String mensagem) {
-        printPromptDeComando();
-        System.out.print(mensagem + ": ");
-    }
- 
 }
