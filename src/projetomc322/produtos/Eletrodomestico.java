@@ -17,7 +17,7 @@ package projetomc322.produtos;
 import java.awt.Image;
 import java.util.ArrayList;
 
-public class Eletrodomestico extends Produto{
+public abstract class Eletrodomestico extends Produto{
 	
 	private int voltagem;
 	private double altura;

@@ -462,8 +462,6 @@ public class Estoque {
                     produtos.add(new TV(codigo, descricao, fotos, marca, preco, voltagem, altura, largura, comprimento, cor, modelo, tela, smart));
                     break;
                 default:
-                    produtos.add(new Eletrodomestico(codigo, descricao, fotos, marca, preco, voltagem, altura,
-                                largura, comprimento, cor, modelo));
                     break;
             }
         }
