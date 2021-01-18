@@ -157,12 +157,6 @@ public class Loja {
 		return null;
 	}
 	
-	/*Método addProduto:
-     * Recebe um produto e adiciona ele ao estoque da loja. 
-     */
-	public void addProduto(Produto p) {
-        estoque.adicionarProduto(p);
-    }
 	
 	/*Método addUsuario:
      * Recebe um usuário e o adiciona aos usuarios da loja. 

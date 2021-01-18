@@ -15,7 +15,7 @@ package projetomc322.produtos;
 import java.awt.Image;
 import java.util.*;
 
-public class Produto {
+public abstract class Produto {
 	private int codigo;
     private String descricao;
     private ArrayList<Image> fotos;
