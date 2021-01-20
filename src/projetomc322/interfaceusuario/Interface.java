@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-import InterfaceGrafica.Cadastro;
-import InterfaceGrafica.Login;
 import projetomc322.auxiliares.Auxiliares;
 import projetomc322.compra.Compra;
 import projetomc322.loja.Loja;
@@ -14,7 +12,7 @@ import projetomc322.metodosdepagamento.Cartao;
 import projetomc322.metodosdepagamento.MetodoPagamento;
 import projetomc322.produtos.Eletrodomestico;
 import projetomc322.produtos.Produto;
-import projetomc322.usuario.Usuario;
+import projetomc322.usuario.*;
 import java.util.ArrayList;
 
 public class Interface {
@@ -22,11 +20,13 @@ public class Interface {
     private Usuario usuarioAtual;
     private Scanner scan;
     private Loja lojaAtual;
+    private Janela janela;
 
 
     public Interface(Loja loja) {
         lojaAtual = loja;
         usuarioAtual = null;
+        janela = new Janela(this);
         status = InterfaceStatus.INICIO;
         scan = new Scanner(System.in);
     }
@@ -49,48 +49,57 @@ public class Interface {
     
     public void iniciar() {
         status = InterfaceStatus.INICIO;
-        trocarPara(InterfaceStatus.CADASTRO);
-        status = InterfaceStatus.TERMINADA;
-        scan.close();
+        trocarPara(InterfaceStatus.LOGIN);
+        //status = InterfaceStatus.TERMINADA;
+        //scan.close();
     }
 
 
     public void trocarPara(InterfaceStatus st) {
         InterfaceStatus ultimoStatus = status;
         status = st;
-        switch (st) {
-            case INICIO: 
-                iniciar();
-                status = ultimoStatus;
-                break;
-            case CREDITOS:
-                creditos();
-                status = ultimoStatus;
-                break;
-            case CADASTRO:
-            	cadastro();
-            	status = ultimoStatus;
-            	break;
-            case LOGIN:
-                login();
-                status = ultimoStatus;
-                break;
-            case PRINCIPAL:
-                principal();
-                status = ultimoStatus;
-                break;
-            case COMPRA:
-                compra();
-                status = ultimoStatus;
-                break;
-            case PAGAMENTO:
-                pagamento();
-                status = ultimoStatus;
-                break;
-            default:
-                status = ultimoStatus;
-                break;
+        if ((usuarioAtual == null) || (usuarioAtual instanceof UsuarioComum)) {
+            janela.loadPanel(st);
+        } else {
+            switch (st) {
+                case INICIO: 
+                    iniciar();
+                    status = ultimoStatus;
+                    break;
+                case CREDITOS:
+                    creditos();
+                    status = ultimoStatus;
+                    break;
+                case CADASTRO:
+                    cadastro();
+                    status = ultimoStatus;
+                    break;
+                case LOGIN:
+                    login();
+                    status = ultimoStatus;
+                    break;
+                case PRINCIPAL:
+                    principal();
+                    status = ultimoStatus;
+                    break;
+                case COMPRA:
+                    compra();
+                    status = ultimoStatus;
+                    break;
+                case PAGAMENTO:
+                    pagamento();
+                    status = ultimoStatus;
+                    break;
+                default:
+                    status = ultimoStatus;
+                    break;
+            }
         }
+    }
+    
+    public void trocarParaDetalhesProduto(Produto produto) {
+        status = InterfaceStatus.DETALHES_PRODUTO;
+        janela.loadProductDetailPanel(produto);
     }
 
     private void creditos() {
@@ -99,8 +108,7 @@ public class Interface {
     }
 
     private void login() {
-    	Login login = new Login(this);
-    	login.setVisible(true);
+    	janela.loadPanel(status);
     }
 
     private void principal() {
@@ -180,6 +188,7 @@ public class Interface {
                         MetodoPagamento mp = carteira.get(i);
                         System.out.println(Integer.toString(i+1) + ". " + mp);
                     }
+                    break;
                 case "pagar":
                     carteira = usuarioAtual.getCarteira();
                     if (comando.length > 1) {
@@ -262,8 +271,8 @@ public class Interface {
     }
 
     private void cadastro() {
-    	Cadastro captura = new Cadastro(this);
-		captura.janela();
+        //Cadastro captura = new Cadastro(this);
+        //captura.janela();
     }
     
     public void printListaDeComandos(InterfaceStatus stat) {
@@ -326,5 +335,16 @@ public class Interface {
             }
         }
     }
+
+    public boolean handleLogin(String email, String password) {
+        Usuario usr = this.lojaAtual.obterUsuario(email, password);
+        if (!(usr == null)) {
+            this.setUsuarioAtual(usr);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
 }

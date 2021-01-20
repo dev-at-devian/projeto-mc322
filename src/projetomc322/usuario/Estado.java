@@ -56,4 +56,14 @@ public enum Estado {
         return this.descricao;
     }
 
+    public static Estado getEstadoPorSigla(String sigla) {
+        Estado[] estados = Estado.values();
+        for (Estado estado : estados) {
+            if (estado.getSigla().equals(sigla)) {
+                return estado;
+            }
+        }
+        return null;
+    }
+
 }

@@ -16,6 +16,8 @@ package projetomc322.metodosdepagamento;
 
 import java.util.Calendar;
 
+import projetomc322.auxiliares.Auxiliares;
+
 public class Boleto implements MetodoPagamento {
     private String banco;
     private String beneficiario;
@@ -35,8 +37,23 @@ public class Boleto implements MetodoPagamento {
     }
 
     /*----------------------------------------getters-----------------------------------------------------------------*/ 
+    public String getBanco() {
+        return banco;
+    }
+    public String getBeneficiario() {
+        return beneficiario;
+    }
+    public String getPagador() {
+        return pagador;
+    }
     public double getValor() {
         return this.valor;
+    }
+    public Calendar getDataVencimento() {
+        return dataVencimento;
+    }
+    public int getCodigoBarras() {
+        return codigoBarras;
     }
 
     /*Método pagar:
@@ -56,7 +73,7 @@ public class Boleto implements MetodoPagamento {
             "- Beneficiario: " + this.beneficiario + "\n" +
             "- Pagador: " + this.pagador + "\n" +
             "- Valor: " + this.valor + "\n" +
-            "- Data de Vencimento: " + this.dataVencimento + "\n" +
+            "- Data de Vencimento: " + Auxiliares.calendarToString(this.dataVencimento) + "\n" +
             "- Código de Barras: " + this.codigoBarras + "\n";
         return tmpStr;
     }

@@ -7,6 +7,9 @@ public enum InterfaceStatus {
     LOGIN("LOGIN"),
     PRINCIPAL("PRINCIPAL"),
     COMPRA("COMPRA"),
+    COMPRAS("COMPRAS"),
+    CARRINHO("CARRINHO"),
+    DETALHES_PRODUTO("DETALHES"),
     PAGAMENTO("PAGAMENTO"),
     TERMINADA("TERMINADA");
     private final String nome;

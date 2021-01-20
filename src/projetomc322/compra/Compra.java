@@ -48,6 +48,16 @@ public class Compra {
         this.dataCompra = null;
     }
 
+    public Compra() {
+        this.status = CompraStatus.CARRINHO;
+        this.comprador = null;
+        this.produtos = new ArrayList<Produto>();
+        this.valor = 0;
+        this.metodoPagamento = null;
+        this.dataCompra = null;
+    }
+
+
     /*--------------------------geters/seters-------------------------------------*/
     public CompraStatus getStatus() {
         return status;

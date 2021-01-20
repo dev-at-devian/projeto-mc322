@@ -14,6 +14,8 @@ package projetomc322.metodosdepagamento;
 
 import java.util.Calendar;
 
+import projetomc322.auxiliares.Auxiliares;
+
 public class Cartao implements MetodoPagamento{
 
     private String numero;
@@ -74,7 +76,7 @@ public class Cartao implements MetodoPagamento{
             "- Nome do Titular: " + this.nomeTitular + "\n" +
             "- CPF do Titular: " + this.cpfTitular + "\n" +
             "- CVV: " + this.cvv + "\n" +
-            "- Data de Expiração: " + this.dataExpiracao + "\n";
+            "- Data de Expiração: " + Auxiliares.calendarToString(this.dataExpiracao) + "\n";
         return tmpStr;
     }
 

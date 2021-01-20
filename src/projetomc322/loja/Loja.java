@@ -29,8 +29,10 @@
 package projetomc322.loja;
 import java.util.*;
 
+import projetomc322.interfaceusuario.Interface;
 import projetomc322.metodosdepagamento.Boleto;
 import projetomc322.produtos.Produto;
+import projetomc322.usuario.CarregadorUsuario;
 import projetomc322.usuario.Usuario;
 
 public class Loja {
@@ -43,6 +45,7 @@ public class Loja {
     private ArrayList<Usuario> usuarios;
     private Estoque estoque;
     private double caixa;
+		private CarregadorUsuario carregadorUsuario;
     
     /*--------------------------construtor--------------------------------*/ 
     public Loja(String nome, String linkAcesso, String cnpj, String telefone, String email) {
@@ -54,11 +57,12 @@ public class Loja {
 			this.dataCriacao = Calendar.getInstance();
 			this.usuarios = new ArrayList<Usuario>();
 			this.estoque = new Estoque();
+			this.carregadorUsuario = new CarregadorUsuario(this);
 			this.estoque.carregarEstoque();
 			this.caixa = 0;
     }
     
-    public Loja(String nome, String linkAcesso, String cnpj, String telefone, String email, Calendar dataCriacao, ArrayList<Usuario> usuarios, Estoque estoque) {
+    public Loja(String nome, String linkAcesso, String cnpj, String telefone, String email, Calendar dataCriacao, ArrayList<Usuario> usuarios, Estoque estoque, CarregadorUsuario carregadorUsuario) {
 			this.nome = nome;
 			this.linkAcesso = linkAcesso;
 			this.cnpj = cnpj;
@@ -67,10 +71,19 @@ public class Loja {
 			this.dataCriacao = dataCriacao;
 			this.usuarios = usuarios;
 			this.estoque = estoque;
+			this.carregadorUsuario = carregadorUsuario;
 			this.caixa = 0;
     }
     
     /*--------------------------geters/seters-------------------------------------*/
+		public CarregadorUsuario getCarregadorUsuario() {
+			return carregadorUsuario;
+		}
+
+		public void setCarregadorUsuario(CarregadorUsuario carregadorUsuario) {
+			this.carregadorUsuario = carregadorUsuario;
+		}
+
     public String getNome() {
 		return nome;
 	}
@@ -212,6 +225,23 @@ public class Loja {
 		return null;
 	}
 	
+	public void carregarUsuarios() {
+		this.carregadorUsuario.carregarUsuarios();
+	}
+
+	public void adicionarUsuario(Usuario usuario) {
+		this.carregadorUsuario.adicionarUsuario(usuario);
+	}
+
+	public void atualizarUsuarios() {
+		this.carregadorUsuario.atualizarUsuarios();
+	}
+
+	public void atualizarUsuarioAtual(Interface interf) {
+		this.carregadorUsuario.atualizarUsuarioAtual(interf);
+	}
+
+
 	/*Método checarEmail:
 	 * Recebe email e retorna usuário que tem o email em questão se ele existir
 	 * */
