@@ -1,3 +1,11 @@
+/*Classe DetalheProdutoInterface
+ * Responsável por exibir a parte mais externa de onde ficarão as informações de produto, criar
+ * frame que exibirá detalhes do produto e permitir voltar para a MainInterface.
+ * Atributos:
+ * - parentFrame
+ * - product
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.ActionEvent;

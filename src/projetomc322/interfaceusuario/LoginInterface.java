@@ -1,3 +1,8 @@
+/*Classe LoginInterface
+ * Representa  o painel onde são exibidos os inputs e botões;
+ * Atributos:
+ * -parentFrame
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import javax.swing.*;

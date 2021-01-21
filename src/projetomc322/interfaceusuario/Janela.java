@@ -1,3 +1,12 @@
+/*Classe Janela
+ * Representa a Janela principal da interface gráfica e é responsável por delegar quais painéis serão exibidos
+ * Atributos:
+ * -interface
+ * 
+ * Métodos:
+ * - loadPanel
+ * - loadProductDetailPanel
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import javax.swing.*;
@@ -21,7 +30,9 @@ public class Janela extends JFrame {
     public Interface getInterface() {
         return interf;
     }
-
+    /*Método loadPanel:
+     * Recebe um status e de acordo com status decide qual será o conteúdo a ser exibido
+     */
     public void loadPanel(InterfaceStatus status) {
         this.getContentPane().removeAll();
         switch (status) {
@@ -49,6 +60,10 @@ public class Janela extends JFrame {
         this.pack();
         this.setVisible(true);
     }
+    
+    /*Método loadProductDetail:
+     * Recebe um produto a ser visualizado e cria um novo painel para detalhar o produto
+     */
     public void loadProductDetailPanel(Produto product) {
         this.getContentPane().removeAll();
         this.getContentPane().add(new DetalheProdutoInterface(this, product));

@@ -1,3 +1,9 @@
+/*Classe LoginFrame
+ * Responsável pela criação de inputs e botões e pela estilização dos mesmos, além de validar o login
+ * ou mudar o status para cadastro.
+ * Atributos:
+ * -parentFrame
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

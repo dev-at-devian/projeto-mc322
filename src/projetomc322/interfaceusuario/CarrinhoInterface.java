@@ -1,3 +1,11 @@
+/*Classe CarrinhoInterface
+ * Responsável por exibir a parte mais externa da janela onde serão listados os produtos
+ * do carrinho. Cria o botão para retornar para a MainInterface e o botão de finalizar compra.
+ * Atributos:
+ * - parentFrame
+ * - interf
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

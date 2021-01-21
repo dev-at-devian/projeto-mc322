@@ -1,3 +1,5 @@
+/*Enum InterfaceStatus
+ * */
 package projetomc322.interfaceusuario;
 
 public enum InterfaceStatus {

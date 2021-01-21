@@ -1,3 +1,9 @@
+/*Classe PagamentoInterface
+ * Representa  o painel onde são exibidos os inputs e botão de pagamento;
+ * Atributos:
+ * -parentFrame
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import javax.swing.*;

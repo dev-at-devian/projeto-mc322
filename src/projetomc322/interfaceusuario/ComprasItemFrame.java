@@ -1,3 +1,11 @@
+/*Classe ComprasItemFrame
+ * Responsável por criar o item com a imagem e o nome  de um produto comprado.
+ * Atributos:
+ * - parentPanel
+ * - interf
+ * - product
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

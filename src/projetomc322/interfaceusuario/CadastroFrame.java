@@ -1,3 +1,10 @@
+/*Classe CadastroFrame
+ * Responsável pela criação e estilizaçãp dos inputs e do botão. Permite a criação
+ * de um novo UsuárioComum.
+ * Atributos:
+ * -parentFrame
+ * -interf
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

@@ -1,3 +1,11 @@
+/*Classe ComprasInterface
+ * Responsável por exibir a parte mais externa da janela onde serão listadas as compras anteriores. 
+ * Cria o botão para retornar para a MainInterface.
+ * Atributos:
+ * - parentFrame
+ * - interf
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

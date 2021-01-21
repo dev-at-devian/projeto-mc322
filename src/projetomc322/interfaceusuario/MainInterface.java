@@ -1,3 +1,9 @@
+/*Classe MainInterface
+ * Representa  o painel mais externo que possui uma navegação entre o carrinho e as compras;
+ * Atributos:
+ * -parentFrame
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

@@ -1,3 +1,10 @@
+/*Classe ComprasList
+ * Responsável por criar a lista de compras a ser exibida mostrando a data da compra, o método de pagamento, 
+ * total da compra e os produtos comprados.
+ * Atributos:
+ * - parentPanel
+ * - interf
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

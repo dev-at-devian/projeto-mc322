@@ -1,3 +1,8 @@
+/*Classe CadastroInterface
+ * Representa  o painel onde são exibidos os inputs e botão de cadastro;
+ * Atributos:
+ * -parentFrame
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import javax.swing.*;

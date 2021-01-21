@@ -1,3 +1,10 @@
+/*Classe MainGrid
+ * Representa  o painel onde são listados os produtos;
+ * Atributos:
+ * - parentFrame
+ * - interf
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import javax.swing.*;

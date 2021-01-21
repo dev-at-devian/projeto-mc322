@@ -1,3 +1,9 @@
+/*Classe CarrinhoList
+ * Responsável por criar a lista de produtos a ser exibida.
+ * Atributos:
+ * - parentPanel
+ * - interf
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

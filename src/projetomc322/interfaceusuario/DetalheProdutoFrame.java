@@ -1,3 +1,11 @@
+/*Classe DetalheProdutoFrame
+ * Responsável por exibir informações do produto de acordo com a sua instância, criar o 
+ * botão de adicionar o carrinho.
+ * Atributos:
+ * - parentFrame
+ * - product
+ * - interf
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

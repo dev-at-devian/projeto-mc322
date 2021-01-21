@@ -1,3 +1,11 @@
+/*Classe CarrinhoItemFrame
+ * Responsável por criar o item com as informações de um produto que está no carrinho e o botão
+ * de remover que permite excluir o produto da lista de produtos.
+ * Atributos:
+ * - parentPanel
+ * - interf
+ * - product
+ * */
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;

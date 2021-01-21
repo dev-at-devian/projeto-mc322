@@ -1,3 +1,10 @@
+/*Classe ItemFrame
+ * Responsável por exibir um produto com sua foto e nome. Permite mudar para a interface de dethalhar
+ * o produto quando clicado.
+ * Atributos:
+ * -parentFrame
+ * */
+
 package projetomc322.interfaceusuario;
 import projetomc322.font.*;
 import projetomc322.produtos.Produto;

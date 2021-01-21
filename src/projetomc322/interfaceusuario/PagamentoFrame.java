@@ -1,3 +1,11 @@
+/*Classe PagamentoFrame
+ * Responsável pela criação e estilizaçãp dos inputs e do botão. Cria três opções de métodos de pagamento
+ *  diferentes: boleto, novo cartão e método já salvo
+ * Atributos:
+ * -parentFrame
+ * -interf
+ * */
+
 package projetomc322.interfaceusuario;
 import java.awt.*;
 import java.awt.event.*;
