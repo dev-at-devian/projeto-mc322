@@ -1,5 +1,5 @@
 /*Classe ItemFrame
- * Responsável por exibir um produto com sua foto e nome. Permite mudar para a interface de dethalhar
+ * Responsável por exibir um produto com sua foto e nome. Permite mudar para a interface de detalhar
  * o produto quando clicado.
  * Atributos:
  * -parentFrame
@@ -22,7 +22,7 @@ public class ItemFrame extends JPanel{
         //this.setOpaque(false);
         //this.setLayout(new GridLayout(2,2,10,10));
         this.setPreferredSize(new Dimension(120,240));
-        JLabel productLabel = new JLabel(productName, new ImageIcon(productImage.getScaledInstance(120, 140, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
+        JLabel productLabel = new JLabel(("R$" + product.getPreco()), new ImageIcon(productImage.getScaledInstance(120, 140, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
         productLabel.setVerticalTextPosition(JLabel.BOTTOM);
         productLabel.setHorizontalTextPosition(JLabel.CENTER);
         productLabel.setOpaque(false);

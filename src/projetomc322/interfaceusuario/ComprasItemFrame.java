@@ -33,7 +33,7 @@ public class ComprasItemFrame extends JPanel{
         Font font = null;
         font = FontSelector.ROBOTO_LIGHT.getFont();
 
-        JLabel productLabel = new JLabel(product.getMarca(), new ImageIcon(product.getFoto(0).getScaledInstance(50, 70, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
+        JLabel productLabel = new JLabel((product.getMarca() + " " + ((Eletrodomestico)product).getModelo()), new ImageIcon(product.getFoto(0).getScaledInstance(50, 70, java.awt.Image.SCALE_SMOOTH)), JLabel.CENTER);
         productLabel.setBorder(new EmptyBorder(10, 10, 10, 10));
         productLabel.setVerticalTextPosition(JLabel.CENTER);
         productLabel.setHorizontalTextPosition(JLabel.RIGHT);

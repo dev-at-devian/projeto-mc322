@@ -22,6 +22,10 @@ public class Admin extends Usuario{
 	public void addProduto(Produto produto) {
         loja.getEstoque().adicionarProduto(produto);
     }
+
+		public void addUsuario(Usuario usuario) {
+        loja.adicionarUsuario(usuario);
+    }
 	
 	/*Método editarProduto:
      * Recebe o produto antigo a ser editado e o produto com a edição

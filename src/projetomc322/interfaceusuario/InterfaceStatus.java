@@ -5,6 +5,8 @@ package projetomc322.interfaceusuario;
 public enum InterfaceStatus {
     INICIO("INICIO"),
     CADASTRO("CADASTRO"),
+    ADM_CADASTRO_USUARIO("CADASTRO USUARIO"),
+    ADM_CADASTRO_PRODUTO("CADASTRO PRODUTO"),
     CREDITOS("CREDITOS"),
     LOGIN("LOGIN"),
     PRINCIPAL("PRINCIPAL"),

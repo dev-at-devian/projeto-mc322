@@ -33,7 +33,7 @@ import projetomc322.interfaceusuario.Interface;
 import projetomc322.metodosdepagamento.Boleto;
 import projetomc322.produtos.Produto;
 import projetomc322.usuario.CarregadorUsuario;
-import projetomc322.usuario.Usuario;
+import projetomc322.usuario.*;
 
 public class Loja {
     private String nome;
@@ -215,6 +215,7 @@ public class Loja {
 	/*Método obterUsuario:
 	 * Recebe email e senha do usuário e retorna o usuário caso ele exista
 	 * */
+
 	public Usuario obterUsuario(String email, String senha) {
 		Usuario usr = checarEmail(email);
 		if (!(usr == null)) {
@@ -225,6 +226,15 @@ public class Loja {
 		return null;
 	}
 	
+	public Usuario obterUsuario(String email, Usuario credenciais) {
+		Usuario usr = checarEmail(email);
+		if ((!(usr == null)) && (credenciais instanceof Admin)) {
+			return usr;
+		}
+		return null;
+	}
+	
+
 	public void carregarUsuarios() {
 		this.carregadorUsuario.carregarUsuarios();
 	}

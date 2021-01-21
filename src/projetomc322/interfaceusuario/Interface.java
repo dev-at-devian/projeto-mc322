@@ -10,10 +10,10 @@ import projetomc322.loja.Loja;
 import projetomc322.metodosdepagamento.Boleto;
 import projetomc322.metodosdepagamento.Cartao;
 import projetomc322.metodosdepagamento.MetodoPagamento;
-import projetomc322.produtos.Eletrodomestico;
-import projetomc322.produtos.Produto;
+import projetomc322.produtos.*;
 import projetomc322.usuario.*;
 import java.util.ArrayList;
+import java.awt.Image;
 
 public class Interface {
     private InterfaceStatus status;
@@ -70,8 +70,12 @@ public class Interface {
                     creditos();
                     status = ultimoStatus;
                     break;
-                case CADASTRO:
-                    cadastro();
+                case ADM_CADASTRO_USUARIO:
+                    cadastroUsuario();
+                    status = ultimoStatus;
+                    break;
+                case ADM_CADASTRO_PRODUTO:
+                    cadastroProduto();
                     status = ultimoStatus;
                     break;
                 case LOGIN:
@@ -120,8 +124,38 @@ public class Interface {
                 case "ajuda":
                     printListaDeComandos(InterfaceStatus.PRINCIPAL);
                     break;
+                case "cadastrar":
+                    String argumento = comando[1];
+                    if (argumento.equals("produto")) {
+                        trocarPara(InterfaceStatus.ADM_CADASTRO_PRODUTO);
+                    } else if (argumento.equals("usuario")) {
+                        trocarPara(InterfaceStatus.ADM_CADASTRO_USUARIO);
+                    }
+                    break;
+                case "remover":
+                    String argumento1 = comando[1];
+                    if (argumento1.equals("produto")) {
+                        int argumento2 = Integer.valueOf(comando[2]);
+                        ((Admin)getUsuarioAtual()).removerProduto(getLojaAtual().getProdutoPorCodigo(argumento2));
+                    } else if (argumento1.equals("usuario")) {
+                        String argumento2 = comando[2];
+                        ((Admin)getUsuarioAtual()).removerUsuario(getLojaAtual().obterUsuario(argumento2, getUsuarioAtual()));
+                    }
+                    break;
                 case "produtos":
                     printListaDeProdutos();
+                    break;
+                case "caixa":
+                    if (getUsuarioAtual() instanceof Admin) {
+                        System.out.println("Caixa: " + ((Admin)getUsuarioAtual()).visualizarCaixa());
+                    }
+                    break;
+                case "usuarios":
+                    if (getUsuarioAtual() instanceof Admin) {
+                        for (Usuario usuario : getLojaAtual().getUsuarios()) {
+                        System.out.println(usuario);
+                        }
+                    }
                     break;
                 case "produto":
                     codigo = Integer.parseInt(comando[1]);
@@ -270,13 +304,162 @@ public class Interface {
         }
     }
 
-    private void cadastro() {
-        //Cadastro captura = new Cadastro(this);
-        //captura.janela();
+    private void cadastroUsuario() {
+        System.out.println("--- Cadastro de Usuário ---");
+
+        System.out.println("Informações básicas");
+
+        printPromptComMensagem("Status (admin/usuario)");
+        String status = scan.nextLine();
+        printPromptComMensagem("Nome");
+        String nome = scan.nextLine();
+        printPromptComMensagem("Email");
+        String email = scan.nextLine();
+        printPromptComMensagem("Senha");
+        String senha = scan.nextLine();
+        printPromptComMensagem("Data de nascimento");
+        Calendar dataNascimento = Auxiliares.stringToCalendar(scan.nextLine());
+        printPromptComMensagem("CPF");
+        int cpf = Integer.valueOf(scan.nextLine());
+        printPromptComMensagem("Telefone");
+        String telefone = scan.nextLine();
+
+        System.out.println("Endereço");
+        Endereco endereco = new Endereco();
+        printPromptComMensagem("CEP");
+        endereco.setCep(Integer.valueOf(scan.nextLine()));
+        printPromptComMensagem("Estado");
+        endereco.setEstado(Estado.getEstadoPorSigla(scan.nextLine()));
+        printPromptComMensagem("Cidade");
+        endereco.setCidade(scan.nextLine());
+        printPromptComMensagem("Bairro");
+        endereco.setBairro(scan.nextLine());
+        printPromptComMensagem("Logradouro");
+        endereco.setLogradouro(scan.nextLine());
+        printPromptComMensagem("Número");
+        endereco.setNumero(Integer.valueOf(scan.nextLine()));
+
+        if (status.equals("admin")) {
+            Admin adm = new Admin(email, senha, nome, dataNascimento, cpf, endereco, telefone, getLojaAtual());
+            ((Admin)getUsuarioAtual()).addUsuario(adm);
+        } else if (status.equals("usuario")) {
+            UsuarioComum usr = new UsuarioComum(email, senha, nome, dataNascimento, cpf, endereco, telefone);
+            ((Admin)getUsuarioAtual()).addUsuario(usr);
+        }
     }
-    
+ 
+    private void cadastroProduto() {
+        System.out.println("--- Cadastro de Produto ---");
+        printPromptComMensagem("Tipo");
+        String tipo = scan.nextLine();
+
+        printPromptComMensagem("Código");
+        int codigo       = Integer.valueOf(scan.nextLine());
+        printPromptComMensagem("Descrição");
+        String descricao = scan.nextLine();
+        printPromptComMensagem("Marca");
+        String marca     = scan.nextLine();
+        printPromptComMensagem("Preço");
+        double preco     = Double.valueOf(scan.nextLine());
+        printPromptComMensagem("Voltagem");
+        int voltagem       = Integer.valueOf(scan.nextLine());
+        printPromptComMensagem("Altura");
+        double altura      = Double.valueOf(scan.nextLine());
+        printPromptComMensagem("Largura");
+        double largura     = Double.valueOf(scan.nextLine());
+        printPromptComMensagem("Comprimento");
+        double comprimento = Double.valueOf(scan.nextLine());
+        printPromptComMensagem("Cor");
+        String cor         = scan.nextLine();
+        printPromptComMensagem("Modelo");
+        String modelo      = scan.nextLine();
+
+        switch (tipo) {
+            case "computador":
+                printPromptComMensagem("Processador");
+                String processador        = scan.nextLine();
+                printPromptComMensagem("Sistema Operacional");
+                String sistemaOperacional = scan.nextLine();
+                printPromptComMensagem("RAM (GB)");
+                int ram                   = Integer.valueOf(scan.nextLine());
+                printPromptComMensagem("Armazenamento (GB)");
+                int hd                    = Integer.valueOf(scan.nextLine());
+                Computador computador = new Computador(codigo, descricao, new ArrayList<Image>(), marca, preco, voltagem, altura, largura, comprimento, cor, modelo, processador, sistemaOperacional, ram, hd);
+                ((Admin)getUsuarioAtual()).addProduto(computador);
+                break;
+            case "fogao":
+                printPromptComMensagem("Número de bocas");
+                int numeroBocas = Integer.valueOf(scan.nextLine());
+                printPromptComMensagem("Tipo (piso/embutido/cooktop)");
+                String tipoFogaoStr = scan.nextLine();
+                TipoFogao tipoFogao = TipoFogao.PISO;
+                    switch (tipoFogaoStr) {
+                        case "piso":
+                            tipoFogao = TipoFogao.PISO;
+                            break;
+                        case "embutido":
+                            tipoFogao = TipoFogao.EMBUTIDO;
+                            break;
+                        case "cooktop":
+                            tipoFogao = TipoFogao.COOKTOP;
+                            break;
+                        default:
+                            break;
+                    }
+                printPromptComMensagem("Possui forno? (sim/nao)");
+                boolean forno = scan.nextLine().equals("sim");
+                Fogao fogao = new Fogao(codigo, descricao, new ArrayList<Image>(), marca, preco, voltagem, altura, largura, comprimento, cor, modelo, numeroBocas, tipoFogao, forno);
+                ((Admin)getUsuarioAtual()).addProduto(fogao);
+                break;
+            case "geladeira":
+                printPromptComMensagem("Número de portas");
+                int numeroPortas = Integer.parseInt(scan.nextLine());
+                printPromptComMensagem("É frost free? (sim/nao)");
+                boolean frostFree = scan.nextLine().equals("sim");
+                printPromptComMensagem("Possui freezer? (sim/nao)");
+                boolean freezer = scan.nextLine().equals("sim");
+                Geladeira geladeira = new Geladeira(codigo, descricao, new ArrayList<Image>(), marca, preco, voltagem, altura, largura, comprimento, cor, modelo, numeroPortas, frostFree, freezer);
+                ((Admin)getUsuarioAtual()).addProduto(geladeira);
+                break;
+            case "tv":
+                printPromptComMensagem("Tipo (lcd/led/oled/qled)");
+                String telaStr = scan.nextLine();
+                Tela tela = Tela.LCD;
+                switch (telaStr) {
+                    case "lcd":
+                        tela = Tela.LCD;
+                        break;
+                    case "led":
+                        tela = Tela.LED;
+                        break;
+                    case "oled":
+                        tela = Tela.OLED;
+                        break;
+                    case "qled":
+                        tela = Tela.QLED;
+                        break;
+                    default:
+                        break;
+                }
+                printPromptComMensagem("É Smart TV? (sim/nao)");
+                boolean smart = scan.nextLine().equals("sim");
+                TV tv = new TV(codigo, descricao, new ArrayList<Image>(), marca, preco, voltagem, altura, largura, comprimento, cor, modelo, tela, smart);
+                ((Admin)getUsuarioAtual()).addProduto(tv);
+                break;
+            default:
+                break;
+        }
+
+    }
+       
     public void printListaDeComandos(InterfaceStatus stat) {
         System.out.println("Comandos:");
+        System.out.println(" - (Admin) cadastrar usuario: Inicia o menu de cadastro de usuário");
+        System.out.println(" - (Admin) remover usuario (email) (senha): Remove o usuário com as credenciais dadas");
+        System.out.println(" - (Admin) cadastrar produto: Inicia o menu de cadastro de produto");
+        System.out.println(" - (Admin) remover produto (codigo): Remove o produto com o código dado da loja");
+        System.out.println(" - (Admin) caixa: Visualiza o caixa da loja");
+        System.out.println(" - (Admin) usuarios: Visualiza os usuários registrados na loja");
         System.out.println(" - ajuda : Apresenta a lista de comandos");
         System.out.println(" - cancelar (em qualquer contexto) : Retorna ao menu principal");
 
