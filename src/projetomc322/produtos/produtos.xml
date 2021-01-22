@@ -1,78 +1,5 @@
 <produtos>
-    <produto>
-        <tipo>Geladeira</tipo>
-        <codigo>103</codigo>
-        <descricao>
-Geladeira/Refrigerador Electrolux Duplex TW42S Top Freezer com Dispenser De Água 382L Inox - 110V
-	   </descricao>
-        <fotos>
-            <foto>src/projetomc322/img/geladeira_tw42s_1.jpg</foto>
-            <foto>src/projetomc322/img/geladeira_tw42s_2.jpg</foto>
-            <foto>src/projetomc322/img/geladeira_tw42s_3.jpg</foto>
-            <foto>src/projetomc322/img/geladeira_tw42s_4.jpg</foto>
-        </fotos>
-        <marca>Electrolux</marca>
-        <preco>2599.99</preco>
-        <voltagem>110</voltagem>
-        <altura>79</altura>
-        <largura>60</largura>
-        <comprimento>86</comprimento>
-        <cor>Inox</cor>
-        <modelo>TW42S</modelo>
-        <portas>2</portas>
-        <frostfree>sim</frostfree>
-        <freezer>sim</freezer>
-    </produto>
-    <produto>
-        <tipo>Computador</tipo>
-        <codigo>101</codigo>
-        <descricao>
-Pc Gamer Completo Smat Pc SMT81072 i5 8GB (Geforce GTX 1050TI 4GB) 1TB + Cadeira Gamer
-		</descricao>
-        <fotos>
-            <foto>src/projetomc322/img/computador_smt81072_1.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_2.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_3.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_4.jpg</foto>
-        </fotos>
-        <marca>Neologic</marca>
-        <preco>4355.10</preco>
-        <voltagem>220</voltagem>
-        <altura>11.1</altura>
-        <largura>22.2</largura>
-        <comprimento>33.3</comprimento>
-        <cor>Preto</cor>
-        <modelo>SMT81072</modelo>
-        <processador>Intel Core i5 3.2 6mb</processador>
-        <sistema>Windows 10</sistema>
-        <ram>8</ram>
-        <hd>1000</hd>
-    </produto>
-    <produto>
-        <tipo>Fogão</tipo>
-        <codigo>102</codigo>
-        <descricao>
-Fogão Brastemp 4 Bocas BFO4N Inox - Bivolt
-		</descricao>
-        <fotos>
-            <foto>src/projetomc322/img/computador_smt81072_1.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_2.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_3.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_4.jpg</foto>
-        </fotos>
-        <marca>Brastemp</marca>
-        <preco>899.99</preco>
-        <voltagem>220</voltagem>
-        <altura>100.0</altura>
-        <largura>50.0</largura>
-        <comprimento>50.0</comprimento>
-        <cor>Inox</cor>
-        <modelo>BFO4N</modelo>
-        <bocas>4</bocas>
-        <fogao>piso</fogao>
-        <forno>sim</forno>
-    </produto>
-    <produto>
+	<produto>
         <tipo>Geladeira</tipo>
         <codigo>100</codigo>
         <descricao>
@@ -97,8 +24,52 @@ Geladeira/Refrigerador Electrolux Duplex TW42S Top Freezer com Dispenser De Águ
         <freezer>sim</freezer>
     </produto>
     <produto>
-        <tipo>Computador</tipo>
+        <tipo>Geladeira</tipo>
         <codigo>101</codigo>
+        <descricao>
+Geladeira/Refrigerador Brastemp Frost Free Duplex - Branca 375L BRM44 HBANA
+	   </descricao>
+        <fotos>
+            <foto>src/projetomc322/img/geladeira2_1.jpg</foto>
+            <foto>src/projetomc322/img/geladeira2__2.jpg</foto>
+        </fotos>
+        <marca>Brastemp</marca>
+        <preco>2399.99</preco>
+        <voltagem>110</voltagem>
+        <altura>176</altura>
+        <largura>75</largura>
+        <comprimento>62</comprimento>
+        <cor>Branco</cor>
+        <modelo>BRM44 HBANA</modelo>
+        <portas>2</portas>
+        <frostfree>sim</frostfree>
+        <freezer>sim</freezer>
+    </produto>
+    <produto>
+        <tipo>Geladeira</tipo>
+        <codigo>102</codigo>
+        <descricao>
+Geladeira Brastemp Frost Free Inverse 573 litros cor Inox com Smart Bar
+	   </descricao>
+        <fotos>
+            <foto>src/projetomc322/img/geladeira3_1.jpg</foto>
+            <foto>src/projetomc322/img/geladeira3_2.jpg</foto>
+        </fotos>
+        <marca>Brastemp</marca>
+        <preco>4699.99</preco>
+        <voltagem>220</voltagem>
+        <altura>188</altura>
+        <largura>85</largura>
+        <comprimento>75</comprimento>
+        <cor>Inox</cor>
+        <modelo>BRE80</modelo>
+        <portas>2</portas>
+        <frostfree>sim</frostfree>
+        <freezer>sim</freezer>
+    </produto>
+    <produto>
+        <tipo>Computador</tipo>
+        <codigo>103</codigo>
         <descricao>
 Pc Gamer Completo Smat Pc SMT81072 i5 8GB (Geforce GTX 1050TI 4GB) 1TB + Cadeira Gamer
 		</descricao>
@@ -122,27 +93,110 @@ Pc Gamer Completo Smat Pc SMT81072 i5 8GB (Geforce GTX 1050TI 4GB) 1TB + Cadeira
         <hd>1000</hd>
     </produto>
     <produto>
-        <tipo>Fogão</tipo>
-        <codigo>102</codigo>
+        <tipo>Computador</tipo>
+        <codigo>104</codigo>
         <descricao>
-Fogão Brastemp 4 Bocas BFO4N Inox - Bivolt
+Computador com Monitor LED Intel Dual Core 2.58gb 2GB 500GB EasyPC Smart		</descricao>
+        <fotos>
+            <foto>src/projetomc322/img/computador2_1.jpg</foto>
+            <foto>src/projetomc322/img/computador2_2.jpg</foto>
+        </fotos>
+        <marca>EasyPC</marca>
+        <preco>1409.00</preco>
+        <voltagem>110</voltagem>
+        <altura>11.1</altura>
+        <largura>22.2</largura>
+        <comprimento>33.3</comprimento>
+        <cor>Preto</cor>
+        <modelo>22037</modelo>
+        <processador>Intel Dual Core</processador>
+        <sistema>Linux</sistema>
+        <ram>2</ram>
+        <hd>500</hd>
+    </produto>
+    <produto>
+        <tipo>Computador</tipo>
+        <codigo>105</codigo>
+        <descricao>
+PC Gamer Completo Imperiums i5 / 8gb / HD 500gb / gpu 2gb
 		</descricao>
         <fotos>
-            <foto>src/projetomc322/img/computador_smt81072_1.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_2.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_3.jpg</foto>
-            <foto>src/projetomc322/img/computador_smt81072_4.jpg</foto>
+            <foto>src/projetomc322/img/computador3.jpg</foto>
         </fotos>
-        <marca>Brastemp</marca>
-        <preco>899.99</preco>
+        <marca>Geforce</marca>
+        <preco>3149.00</preco>
+        <voltagem>220</voltagem>
+        <altura>11.1</altura>
+        <largura>22.2</largura>
+        <comprimento>33.3</comprimento>
+        <cor>Preto</cor>
+        <modelo>Imperium</modelo>
+        <processador>Intel Core i5</processador>
+        <sistema>Windows 10</sistema>
+        <ram>8</ram>
+        <hd>500</hd>
+    </produto>
+    <produto>
+        <tipo>Fogão</tipo>
+        <codigo>106</codigo>
+        <descricao>Fogão 4 Bocas Consul Acendimento Automático - CFO4 NARUNA</descricao>
+        <fotos>
+            <foto>src/projetomc322/img/fogao1_1.jpg</foto>
+            <foto>src/projetomc322/img/fogao1_2.jpg</foto>
+        </fotos>
+        <marca>Consul</marca>
+        <preco>949.00</preco>
         <voltagem>220</voltagem>
         <altura>100.0</altura>
         <largura>50.0</largura>
         <comprimento>50.0</comprimento>
         <cor>Inox</cor>
-        <modelo>BFO4N</modelo>
+        <modelo>	CFO4NARUNA</modelo>
         <bocas>4</bocas>
         <fogao>piso</fogao>
         <forno>sim</forno>
+    </produto>
+    <produto>
+        <tipo>Fogão</tipo>
+        <codigo>107</codigo>
+        <descricao>
+Fogão Brastemp 4 bocas embutir cor Inox com timer digital
+		</descricao>
+        <fotos>
+            <foto>src/projetomc322/img/fogao2_1.jpg</foto>
+            <foto>src/projetomc322/img/fogao2_2.jpg</foto>
+        </fotos>
+        <marca>Brastemp</marca>
+        <preco>1874.00</preco>
+        <voltagem>220</voltagem>
+        <altura>100.0</altura>
+        <largura>50.0</largura>
+        <comprimento>50.0</comprimento>
+        <cor>Inox</cor>
+        <modelo>BYO4TAR</modelo>
+        <bocas>4</bocas>
+        <fogao>piso</fogao>
+        <forno>sim</forno>
+    </produto>
+     <produto>
+        <tipo>TV</tipo>
+        <codigo>108</codigo>
+        <descricao>
+Smart TV Crystal UHD 4K LED 50” Samsung - 50TU8000 Wi-Fi Bluetooth HDR 3 HDMI 2 USB
+		</descricao>
+        <fotos>
+            <foto>src/projetomc322/img/tv1_1.jpg</foto>
+            <foto>src/projetomc322/img/tv1_2.jpg</foto>
+        </fotos>
+        <marca>Samsung</marca>
+        <preco>3324.00</preco>
+        <voltagem>110</voltagem>
+        <altura>100.0</altura>
+        <largura>50.0</largura>
+        <comprimento>50.0</comprimento>
+        <cor>Preto</cor>
+        <modelo>50TU8000</modelo>
+        <tela>led</tela>
+        <smart>sim</smart>
     </produto>
 </produtos>
