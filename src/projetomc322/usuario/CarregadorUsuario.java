@@ -1,23 +1,21 @@
-/*Classe Estoque
- * Responsável por armazenar detalhes do estoque e gerenciar os produtos, adicionando e removendo.
- * Atributos
- * - docBuilder
- * - arquivoUsuarios
- * - produtos
- * - arquivoUsuariosPath
- * 
+/* 
+ * Classe CarregadorUsuario
+ * Responsável por carregar e modificar usuários presentes no arquivo usuarios.xml.
+ * Atributos:
+ *  - docBuilder
+ *  - arquivoUsuarios
+ *  - arquivoUsuariosPath
+ *  - loja
  * Métodos:
- * - geters/seters
- * - removerProduto(produto) e removerProduto(codigo)
- * - adicionarProduto(produto)
- * - adicionarEletrodomestico(produto, novoUsuario)
- * - adicionarComputador(produto, novoUsuario)
- * - adicionarFogao(produto, novoUsuario)
- * - adicionarGeladeira(produto, novoUsuario)
- * - adicionarTV(produto, novoUsuario)
- * - carregarEstoque()
- * - findProduto(codigo)
- * */
+ *  - getters/setters
+ *  - removerUsuario(usuario): Recebe o usuário a ser removido e extrai o seu email para remove-lo do estoque.
+ *  - removerUsuario(email): Recebe o email do usuário a ser removido e o remove do arquivo.
+ *  - adicionarUsuario(usuario): Recebe o usuário a ser adicionado e o adiciona ao arquivo
+ *  - carregarUsuarios(): Carrega um arquivo XML contendo os usuarios da loja, gera objetos para cada um, e os adiciona à ArrayList de usuarios.
+ *  - atualizarUsuarios(): Atualiza a lista de usuarios para caso tenha ocorrido alguma alteração desde o último carregamento.
+ *  - atualizarUsuarioAtual(interface): Atualiza o usuário atual da interface.
+ */
+
 
 package projetomc322.usuario;
 
@@ -60,7 +58,6 @@ import projetomc322.loja.*;
 public class CarregadorUsuario {
     private DocumentBuilder docBuilder;
     private Document arquivoUsuarios;
-    private ArrayList<Produto> produtos;
     private String arquivoUsuariosPath;
     private Loja loja;
 
@@ -75,7 +72,6 @@ public class CarregadorUsuario {
             e.printStackTrace();
         }
         this.arquivoUsuariosPath = "src/projetomc322/usuario/usuarios.xml";
-        this.produtos = new ArrayList<Produto>();
     }
 
     /*--------------------------getters/setters-------------------------------------*/
@@ -87,39 +83,31 @@ public class CarregadorUsuario {
         this.docBuilder = docBuilder;
     }
 
-    public Document getArquivoEstoque() {
+    public Document getArquivoUsuarios() {
         return arquivoUsuarios;
     }
 
-    public void setArquivoEstoque(Document arquivoUsuarios) {
+    public void setArquivoUsuarios(Document arquivoUsuarios) {
         this.arquivoUsuarios = arquivoUsuarios;
     }
 
-    public String getArquivoEstoquePath() {
+    public String getArquivoUsuariosPath() {
         return arquivoUsuariosPath;
     }
 
-    public void setArquivoEstoquePath(String arquivoUsuariosPath) {
+    public void setArquivoUsuariosPath(String arquivoUsuariosPath) {
         this.arquivoUsuariosPath = arquivoUsuariosPath;
     }
 
-    public ArrayList<Produto> getProdutos() {
-        return this.produtos;
-    }
-
-    public void setProdutos(ArrayList<Produto> produtos) {
-        this.produtos = produtos;
-    }
-
-    /*Método removerProduto:
-     * Recebe o produto a ser removido e extrai o código dela para remove-lo do estoque. 
+    /* Método removerUsuario:
+     * Recebe o usuário a ser removido e extrai o seu email para remove-lo do estoque.
      */
     public void removerUsuario(Usuario usuario) {
         removerUsuario(usuario.getEmail());
     }
 
-    /*Método removerProduto:
-     * Recebe o código do produto a ser removido e remove o produto desejado do arquivo. 
+    /*Método removerUsuario:
+     * Recebe o email do usuário a ser removido e o remove do arquivo.
      */
 
     public void removerUsuario(String email) {
@@ -133,10 +121,8 @@ public class CarregadorUsuario {
         }
     }
 
-    /*Método adicionarProduto:
-     * Recebe o produto a ser adicionado e verifica qual o tipo de produto ele é para adicionar estoque. 
-     * Dependendo do tipo específico de produto, realiza operações adicionais por meio de métodos privados
-     * especializados no tipo (por exemplo, adicionarGeladeira para produtos do tipo Geladeira)
+    /* Método adicionarUsuario:
+     * Recebe o usuário a ser adicionado e o adiciona ao arquivo
      */
     public void adicionarUsuario(Usuario usuario){
         String email = usuario.getEmail();
@@ -305,9 +291,8 @@ public class CarregadorUsuario {
     }
 
 
-    /*Método carregarEstoque():
-     * Carrega um arquivo XML contendo os produtos do estoque, gera objetos para 
-     * cada um, e os adiciona à ArrayList de produtos.
+    /* Método carregarEstoque():
+     * Carrega um arquivo XML contendo os usuarios da loja, gera objetos para cada um, e os adiciona à ArrayList de usuarios.
      */
     public void carregarUsuarios() {
         try {
@@ -428,6 +413,9 @@ public class CarregadorUsuario {
 
     }
 
+    /* Método atualizarUsuarios
+     * Atualiza a lista de usuarios para caso tenha ocorrido alguma alteração desde o último carregamento.
+     */
     public void atualizarUsuarios() {
         for (Usuario usuario : loja.getUsuarios()) {
             removerUsuario(usuario);
@@ -435,6 +423,9 @@ public class CarregadorUsuario {
         }
     }
 
+    /* Método atualizarUsuarioAtual
+     * Atualiza o usuário atual da interface
+     */
     public void atualizarUsuarioAtual(Interface interf) {
         Usuario oldUsuario = null;
         for (Usuario usuario : loja.getUsuarios()) {
@@ -444,22 +435,6 @@ public class CarregadorUsuario {
         }
         loja.getUsuarios().remove(oldUsuario);
         loja.getUsuarios().add(interf.getUsuarioAtual());
-    }
-
-
-    /*Método findProduto:
-     * Recebe o código de um produto e retorna o produto desejado
-     */
-    public Produto findProduto(int codigo) {
-        int i = 0;
-        Produto desejado = null;
-        for(i = 0; i < produtos.size(); i++) {
-            Produto p = produtos.get(i);
-            if(p.getCodigo() == codigo) {
-                desejado = p;
-            }
-        }
-        return desejado;
     }
 
 

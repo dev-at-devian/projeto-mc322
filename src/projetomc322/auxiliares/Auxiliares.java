@@ -5,6 +5,8 @@
  * longo do projeto para beneficiarem de uma método.
  *
  * Métodos:
+ * stringToCalendar(String string)
+ * calendarToString(Calendar calendar)
  * getTagNodeValue(Element element, String tag)
  * writeXML(Document doc, String docPath)
  * removerEspacosXML(Document doc)
@@ -124,17 +126,29 @@ public class Auxiliares {
         return tmpStr;
     }
     
+    /* Método calendarToString
+     *
+     * Converte a instância de Calendar dada para uma string e a retorna
+     *
+     */
+    
     public static String calendarToString(Calendar calendar) {
         return (calendar.get(Calendar.DAY_OF_MONTH) + "/" +
 							 (calendar.get(Calendar.MONTH))+1) + "/" +
 							 (calendar.get(Calendar.YEAR));
     }
+ 
+    /* Método stringToCalendar
+     *
+     * Converte uma string de data para uma instância de Calendar
+     *
+     */
 
 		public static Calendar stringToCalendar(String string) {
         String[] tmpStrArr = string.split("/");
-				return new GregorianCalendar(Integer.valueOf(tmpStrArr[0]),
+				return new GregorianCalendar(Integer.valueOf(tmpStrArr[2]),
 																		 Integer.valueOf(tmpStrArr[1]),
-																		 Integer.valueOf(tmpStrArr[2]));
+																		 Integer.valueOf(tmpStrArr[0]));
 		}
 
 }

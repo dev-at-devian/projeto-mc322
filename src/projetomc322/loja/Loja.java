@@ -225,7 +225,12 @@ public class Loja {
 		}
 		return null;
 	}
-	
+		
+	/*Método obterUsuario:
+	 * Recebe email do usuário e credenciais de um admin e retorna o usuário caso ele exista
+	 * 
+	 */
+
 	public Usuario obterUsuario(String email, Usuario credenciais) {
 		Usuario usr = checarEmail(email);
 		if ((!(usr == null)) && (credenciais instanceof Admin)) {
@@ -234,23 +239,43 @@ public class Loja {
 		return null;
 	}
 	
+	
+	/*Método carregarUsuario:
+	 * Atalho para carregarUsuario de CarregadorUsuario
+	 * 
+	 */
 
 	public void carregarUsuarios() {
 		this.carregadorUsuario.carregarUsuarios();
 	}
+	
+	/*Método adicionarUsuario:
+	 * Atalho para adicionarUsuario de CarregadorUsuario
+	 * 
+	 */
 
 	public void adicionarUsuario(Usuario usuario) {
 		this.carregadorUsuario.adicionarUsuario(usuario);
 	}
+	
+	/*Método atualizarUsuarios:
+	 * Atalho para atualizarUsuarios de CarregadorUsuario
+	 * 
+	 */
 
 	public void atualizarUsuarios() {
 		this.carregadorUsuario.atualizarUsuarios();
 	}
+	
+	/*Método atualizarUsuarioAtual:
+	 * Atalho para atualizarUsuarioAtual de CarregadorUsuario
+	 * 
+	 */
+
 
 	public void atualizarUsuarioAtual(Interface interf) {
 		this.carregadorUsuario.atualizarUsuarioAtual(interf);
 	}
-
 
 	/*Método checarEmail:
 	 * Recebe email e retorna usuário que tem o email em questão se ele existir

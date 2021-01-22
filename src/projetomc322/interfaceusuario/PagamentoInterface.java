@@ -21,7 +21,4 @@ public class PagamentoInterface extends JPanel {
     public Janela getParentFrame() {
         return this.parentFrame;
     }
-    public void lol(){
-        System.out.println("lol");
-    }
 }
